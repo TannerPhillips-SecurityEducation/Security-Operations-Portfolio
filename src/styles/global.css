@@ -65,3 +65,13 @@ h3 { font-size: 1.15rem; }
 .timeline details[open] summary, .experience-list details[open] summary { margin-bottom: 1rem; }
 .body-copy h3 { margin-top: 1.6rem; }
 .body-copy li { margin-bottom: .45rem; }
+
+/* Education content structure. Final Obsidian Prism visual design remains deferred. */
+.education-quote { margin: 1rem 0 1.5rem; border-left: 3px solid var(--accent); background: var(--surface); padding: 1.3rem clamp(1rem, 3vw, 2rem); border-radius: .3rem; }
+.education-quote p { font-weight: 700; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.35; margin: 0; max-width: 50ch; }
+.education-methods { display: grid; gap: .75rem; margin: 1.5rem 0; }
+.education-method { display: flex; align-items: flex-start; gap: 1rem; border-bottom: 1px solid var(--border); padding: .65rem 0; }
+.education-method h3 { margin: 0 0 .2rem; }
+.education-method p { margin: 0; color: var(--muted); }
+.method-number { color: var(--accent); font-size: .85rem; font-weight: 750; min-width: 2rem; padding-top: .12rem; font-variant-numeric: tabular-nums; }
+.education-section-description { max-width: 70ch; }

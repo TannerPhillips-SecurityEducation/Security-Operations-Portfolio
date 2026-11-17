@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { education, creation } from '../../data/about';
+import { learningOutcomes, developmentPurposes, teachingMethods, assessmentRoots } from '../../data/education';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Education">
+  <header class="page-heading">
+    <p class="eyebrow">Education & Learning</p>
+    <h1>Education</h1>
+    <p class="lead">I approach technical education as the development of understanding, practical capability, and confidence.</p>
+  </header>
+
+  <section class="section" aria-labelledby="principle-heading">
+    <h2 id="principle-heading">My Teaching Principle</h2>
+    <blockquote class="education-quote">
+      <p>To Learn One Must Be Able To Ask Questions And Make Mistakes</p>
+    </blockquote>
+    <div class="body-copy">
+      <p>I want learners to be able to question an explanation, test an idea, recognize uncertainty, and try again when something doesn't work. Making room for mistakes is not the same as requiring them. It means treating experimentation and error as normal parts of the learning process.</p>
+      <p>I see my role as helping people move beyond following instructions toward understanding why something works and what to do when the example no longer fits.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="outcomes-heading">
+    <h2 id="outcomes-heading">What I Want Learning to Produce</h2>
+    <div class="card-grid">
+      {learningOutcomes.map((outcome) => (
+        <article class="card">
+          <h3>{outcome.name}</h3>
+          <p>{outcome.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="purpose-heading">
+    <h2 id="purpose-heading">Three Development Purposes</h2>
+    <p class="body-copy">I distinguish the purpose of a learning experience from the way it is taught or assessed. A learning activity may pursue more than one purpose.</p>
+    <div class="card-grid">
+      {developmentPurposes.map((purpose) => (
+        <article class="card">
+          <h3>{purpose.name}</h3>
+          <p>{purpose.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="methods-heading">
+    <h2 id="methods-heading">How I Teach</h2>
+    <p class="body-copy">I combine explanation with demonstration and practice. The method depends on the subject, audience, and learning objective rather than following a fixed sequence for its own sake.</p>
+    <div class="education-methods">
+      {teachingMethods.map((method, index) => (
+        <article class="education-method">
+          <span class="method-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{method.name}</h3>
+            <p>{method.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="body-copy">
+      <p>Students learn at different rates. I work to support learners who need additional guidance and provide opportunities for deeper exploration when others are ready to move ahead.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="assessment-heading">
+    <h2 id="assessment-heading">How I Think About Assessment</h2>
+    <p class="body-copy">I separate assessment into two foundational formats. They can be used to evaluate knowledge, practical skills, or the development of a mindset, depending on how the assessment is designed.</p>
+    <div class="card-grid">
+      {assessmentRoots.map((root) => (
+        <article class="card">
+          <h3>{root.name}</h3>
+          <p>{root.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="modes-heading">
+    <h2 id="modes-heading">My Two Modes of Operation</h2>
+    <p class="body-copy">My work as a Security Educator includes both facilitating learning and creating the experiences and resources that make it possible. I organize those responsibilities into two complementary modes.</p>
+    <div class="experience-list">
+      <details>
+        <summary><strong>Education</strong> · Prepare, Instruct, Demonstrate, Facilitate, Support, Assess, Reflect</summary>
+        <ol class="body-copy">
+          {education.map(([name, description]) => (
+            <li><strong>{name}:</strong> {description}</li>
+          ))}
+        </ol>
+      </details>
+      <details>
+        <summary><strong>Creation</strong> · Analyze, Architect, Design, Develop, Engineer, Validate, Evolve</summary>
+        <ol class="body-copy">
+          {creation.map(([name, description]) => (
+            <li><strong>{name}:</strong> {description}</li>
+          ))}
+        </ol>
+      </details>
+    </div>
+    <p class="body-copy"><strong>Education informs Creation. Creation enables Education.</strong> The two modes reinforce one another through observation, feedback, revision, and practical experience.</p>
+  </section>
+
+  <section class="section" aria-labelledby="explore-education-heading">
+    <h2 id="explore-education-heading">Explore Further</h2>
+    <p class="body-copy">This page describes my educational approach. Publicly shareable teaching materials and demonstrations will be linked when they have been deliberately released and are authorized for public distribution.</p>
+    <div class="resource-links">
+      <a class="secondary-link" href={base + '/about/experience/'}>Professional Experience</a>
+      <a class="secondary-link" href={base + '/about/capabilities/'}>Technical Capabilities</a>
+    </div>
+  </section>
+</BaseLayout>

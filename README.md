@@ -12,7 +12,12 @@ An Astro website with seven navigation categories: Home, About, Projects, Knowle
 
 The editable reference data for milestone dates, operational functions, and capability domains lives in [src/data/about.ts](src/data/about.ts).
 
-Other categories retain their structural placeholders. The final Obsidian Prism identity and interactive `TSP.yaml` have not been implemented.
+The Education page presents the approved teaching philosophy, learning outcomes, instructional methods, and two modes of operation. Other categories retain their structural placeholders. The final Obsidian Prism identity and interactive `TSP.yaml` have not been implemented.
+
+## Education
+- [Education page](src/pages/education/index.astro)
+- [Educational framework data](src/data/education.ts)
+- Education and Creation mode functions reuse [About data](src/data/about.ts)
 
 ## Local development
 

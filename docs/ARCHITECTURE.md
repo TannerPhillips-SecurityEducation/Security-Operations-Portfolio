@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.4, approved About content (2026-11-17).
+**Version:** v0.5, Education section and approved About content (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -19,8 +19,14 @@ Home · About · Projects · Knowledge · Publications · Education · Contact
 - `/about/credentials/`: Previously held certifications and willingness to obtain or renew
 - `/about/`: Approved first-person introduction and navigation to the six pages
 
+## Education (published)
+- `/education/`: First-person teaching philosophy, approved learning outcomes, development purposes, methods, assessment roots, and expandable Education/Creation modes
+- Content source: `src/data/education.ts` (outcomes, purposes, methods, assessments) and `src/data/about.ts` (shared mode functions)
+- The two assessment roots are Knowledge Checks and Practical Assessments. Their scope is separate from the three learning-development purposes.
+- No confidential employer training materials, unpublished curriculum, or unapproved public courses are posted.
+
 ## Publication rules
-- Other top-level categories remain empty.
+- Other top-level categories, except About and Education, remain empty.
 - Geographic information, private relationships, and other people's personal information are excluded.
 - No personal photographs, confidential operational details, proficiency percentages, or unverified project releases.
 - All certifications are described as previously held, not active.
