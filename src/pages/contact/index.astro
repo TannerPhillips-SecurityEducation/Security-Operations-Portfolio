@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { contactChannels } from '../../data/site';
+---
+<BaseLayout title="Contact">
+  <header class="page-heading">
+    <p class="eyebrow">Connect</p>
+    <h1>Contact</h1>
+    <p class="lead">I'm interested in thoughtful conversations about cybersecurity, technical education, engineering, ideas, and making things.</p>
+    <p class="body-copy">You can find me through my public professional profiles below. I keep my contact information limited to these channels.</p>
+  </header>
+  <section class="section" aria-labelledby="channels-heading">
+    <h2 id="channels-heading">Connect with Me</h2>
+    <div class="card-grid">
+      {contactChannels.map((channel) => (
+        <article class="card">
+          <h3>{channel.label}</h3>
+          <p>{channel.description}</p>
+          <p class="knowledge-path">{channel.detail}</p>
+          <div class="resource-links">
+            <a class="secondary-link" href={channel.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit my ' + channel.label + ' profile (opens in a new tab)'}>
+              Visit {channel.label}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

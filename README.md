@@ -58,3 +58,7 @@ The Projects and Publications sections have approval-gated data-driven listing a
 Initially both collections are intentionally empty. No project is featured until it is explicitly selected, completed or demonstrable, and supported by public evidence. Only intentionally published editions are listed in Publications.
 
 To validate editorial entries run `npm run validate:showcase`. Published Markdown editions are read natively from `src/content/releases/` when referenced by an approved edition record.
+
+## Contact
+
+The [Contact page](src/pages/contact/index.astro) links only to the user-approved [LinkedIn profile](https://www.linkedin.com/in/securityeducator/) and [GitHub profile](https://github.com/TannerPhillips-SecurityEducation). Both public URLs are stored centrally in [src/data/site.ts](src/data/site.ts). No email address, phone number, contact form, or location is published.

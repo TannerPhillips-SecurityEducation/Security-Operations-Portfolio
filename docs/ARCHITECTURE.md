@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.5, Education section and approved About content (2026-11-17).
+**Version:** v0.8, Contact channels and approved content (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -26,7 +26,7 @@ Home · About · Projects · Knowledge · Publications · Education · Contact
 - No confidential employer training materials, unpublished curriculum, or unapproved public courses are posted.
 
 ## Publication rules
-- Other top-level categories, except About and Education, remain empty.
+- About, Knowledge, Education, and Contact have public content. Projects and Publications have intentionally empty, curated catalogues. Home retains category navigation pending the interactive introduction.
 - Geographic information, private relationships, and other people's personal information are excluded.
 - No personal photographs, confidential operational details, proficiency percentages, or unverified project releases.
 - All certifications are described as previously held, not active.
@@ -68,3 +68,13 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - `docs/CURATION.md`: Editorial publication policy and release instructions.
 - No unfinished projects, personal drafts, private artifacts, or automatically imported repositories are presented as releases.
 - No Obsidian Prism or interactive TSP.yaml design changes.
+
+## Contact (v0.8)
+
+- `/contact/`: Public professional contact channels, LinkedIn and GitHub only.
+- Approved LinkedIn: `https://www.linkedin.com/in/securityeducator/`.
+- Approved GitHub: `https://github.com/TannerPhillips-SecurityEducation`.
+- Central data: `src/data/site.ts` exports `contactChannels`.
+- No contact form, email, phone, personal location, private relationships, or unapproved social links.
+- Links open official profiles in new tabs, without sharing any visitor form information.
+- No global redesign, Obsidian Prism changes, or TSP.yaml implementation performed during this milestone.
