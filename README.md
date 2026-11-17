@@ -1,27 +1,20 @@
 # Tanner Phillips | Personal Website
 
-A personal website built with Astro, using the seven approved navigation categories.
+An Astro website with seven navigation categories: Home, About, Projects, Knowledge, Publications, Education, and Contact.
 
-## Categories
-
-- Home
-- About
-- Projects
-- Knowledge
-- Publications
-- Education
-- Contact
-
-## Approved About content
-
+## About
+- [My Journey](src/pages/about/journey.astro)
+- [Professional Experience](src/pages/about/experience.astro)
 - [Personal Interests](src/pages/about/interests.md)
-- [Personal Philosophy](src/pages/about/philosophy.md)
+- [Philosophy](src/pages/about/philosophy.md)
+- [Technical Capabilities](src/pages/about/capabilities.astro)
+- [Professional Credentials](src/pages/about/credentials.md)
 
-The About page links to these two first-person articles. Other category pages remain empty until their public content is approved. The visual theme and interactive TSP.yaml experience are planned, not yet implemented.
+The editable reference data for milestone dates, operational functions, and capability domains lives in [src/data/about.ts](src/data/about.ts).
 
-## Development
+Other categories retain their structural placeholders. The final Obsidian Prism identity and interactive `TSP.yaml` have not been implemented.
 
-Requires a supported Node.js version.
+## Local development
 
 ```sh
 npm install
@@ -30,9 +23,4 @@ npm run build
 ```
 
 ## Publishing
-
-The GitHub Actions workflow builds the static website for GitHub Pages. Configure **Settings → Pages → GitHub Actions**.
-
-## Architecture
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+GitHub Actions builds and deploys to GitHub Pages. See `docs/ARCHITECTURE.md` for the content and design boundaries.

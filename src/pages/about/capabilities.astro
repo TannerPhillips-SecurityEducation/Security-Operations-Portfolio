@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { capabilities } from '../../data/about';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Technical Capabilities">
+  <header class="page-heading">
+    <p><a href={base + '/about/'}>About</a></p>
+    <h1>Technical Capabilities</h1>
+    <p class="lead">Five domains organized by practice and connected to supporting experience rather than self-assigned proficiency scores.</p>
+  </header>
+  <section class="section" aria-labelledby="domains-title">
+    <h2 id="domains-title">Capabilities</h2>
+    <div class="experience-list">
+      {capabilities.map((domain) => (
+        <details>
+          <summary><strong>{domain.name}</strong></summary>
+          <div class="body-copy">
+            <p>{domain.description}</p>
+            <h3>Practices</h3>
+            <ul>{domain.practices.map((item) => <li>{item}</li>)}</ul>
+            <h3>Technologies & Methods</h3>
+            <ul>{domain.methods.map((item) => <li>{item}</li>)}</ul>
+            <h3>Supporting Experience</h3>
+            <p>{domain.evidence}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+    <p><a href={base + '/about/experience/'}>Professional experience</a> · <a href={base + '/about/interests/'}>Personal interests</a></p>
+  </section>
+</BaseLayout>

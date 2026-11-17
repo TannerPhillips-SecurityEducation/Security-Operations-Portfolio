@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { milestones } from '../../data/about';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="My Journey">
+  <header class="page-heading">
+    <p><a href={base + '/about/'}>About</a></p>
+    <h1>My Journey</h1>
+    <p class="lead">Selected milestones from my education, military service, and professional career.</p>
+  </header>
+  <section class="section" aria-labelledby="timeline-title">
+    <h2 id="timeline-title">Timeline</h2>
+    <p class="body-copy">Each milestone can be expanded for more context.</p>
+    <ol class="timeline">
+      {milestones.map((m) => (
+        <li>
+          <details>
+            <summary><time datetime={m.year}>{m.year}</time> · {m.title}</summary>
+            <div class="body-copy">
+              <p>{m.summary}</p>
+              <p>{m.more}</p>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ol>
+    <p><a href={base + '/about/experience/'}>Explore my professional experience</a></p>
+  </section>
+</BaseLayout>

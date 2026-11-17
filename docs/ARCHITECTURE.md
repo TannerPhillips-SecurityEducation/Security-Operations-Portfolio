@@ -1,49 +1,36 @@
 # Personal Website Architecture
 
-**Version:** v0.3 (approved About content), 2026-11-17
+**Version:** v0.4, approved About content (2026-11-17).
 
-## Approved public identity
-
+## Public identity
 - Tanner Phillips
 - Security Educator, Engineer & Researcher
 - Personal professional identity
 
-## Approved categories
+## Seven navigation categories
+Home · About · Projects · Knowledge · Publications · Education · Contact
 
-1. Home
-2. About
-3. Projects
-4. Knowledge
-5. Publications
-6. Education
-7. Contact
+## Approved About pages
+- `/about/interests/`: First-person Personal Interests
+- `/about/philosophy/`: First-person Personal Philosophy
+- `/about/journey/`: Progressive timeline for selected 2014, 2015, 2020, and 2025 milestones
+- `/about/experience/`: Navy, Elastic, Corelight, and approved Education/Creation operational functions
+- `/about/capabilities/`: Five evidence-oriented capability domains
+- `/about/credentials/`: Previously held certifications and willingness to obtain or renew
+- `/about/`: Approved first-person introduction and navigation to the six pages
 
-## Current template
+## Publication rules
+- Other top-level categories remain empty.
+- Geographic information, private relationships, and other people's personal information are excluded.
+- No personal photographs, confidential operational details, proficiency percentages, or unverified project releases.
+- All certifications are described as previously held, not active.
+- The knowledge repository is separate and unchanged.
 
-- Astro static site
-- Shared responsive layout and navigation
-- Home page links to each top-level category
-- GitHub Actions workflow for deployment to GitHub Pages
-- Existing styles are temporary; Obsidian Prism and the interactive TSP.yaml visual experience are **not implemented**
+## Visual design
+- Current neutral template is temporary.
+- Obsidian Prism palette, TSP monogram, and interactive authentic `TSP.yaml` are approved design directions, **not implemented**.
+- Visual implementation remains deferred until the design is fully defined.
 
-## Approved and published About content
-
-- `/about/interests/`: Personal Interests, first-person writing in five approved areas
-- `/about/philosophy/`: Personal Philosophy, first-person writing with five approved principles
-- `/about/`: Links to those two approved pages
-- The drafts' wording is preserved from the November 17, 2026 website interview
-
-## Content rules
-
-- Other sections remain empty until their content is approved for implementation.
-- Public content must exclude family and friends, their identities, private relationships, and geographic location.
-- Do not add private, unverified, or unfinished professional claims.
-- Current visual identity decisions will be implemented only after the visual design interview is complete.
-- `TSP.yaml` is an approved planned progressive identity interface, not yet built. When built, it will link to these About pages.
-
-## Repositories
-
-- Website source: TannerPhillips-SecurityEducation/Security-Operations-Portfolio
-- Separate knowledge source: TannerPhillips-SecurityEducation/Security-Education
-
-This update does not modify the knowledge repository or Git history.
+## Sources
+Website: TannerPhillips-SecurityEducation/Security-Operations-Portfolio
+Knowledge: TannerPhillips-SecurityEducation/Security-Education

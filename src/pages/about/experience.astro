@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { education, creation, elasticDays } from '../../data/about';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Professional Experience">
+  <header class="page-heading">
+    <p><a href={base + '/about/'}>About</a></p>
+    <h1>Professional Experience</h1>
+    <p class="lead">My work has progressed from cyber operations to education and curriculum creation.</p>
+  </header>
+  <section class="section" aria-labelledby="experience-title">
+    <h2 id="experience-title">Where I've Worked</h2>
+    <div class="experience-list">
+      <details>
+        <summary><strong>U.S. Navy</strong> · 2014–2020</summary>
+        <div class="body-copy">
+          <p>In 2015, I joined the 90th Cyber Protection Team as a Cryptologic Technician Networks (CTN), a rating now known as Cyber Warfare Technician (CWT).</p>
+          <p>I began in <strong>Cyber Threat Emulation</strong> for about two years before moving into <strong>Cyber Threat Hunting</strong> for the remainder of my Navy service.</p>
+          <p>These experiences exposed me to adversarial and defensive perspectives on cybersecurity. I keep specific operational details private.</p>
+        </div>
+      </details>
+      <details>
+        <summary><strong>Elastic · Security Education</strong> · 2020–2025</summary>
+        <div class="body-copy">
+          <p>At Elastic, I was <strong>primarily an Educator</strong> and <strong>secondarily a Curriculum Developer</strong>. I delivered established training and contributed to curriculum development, maintenance, and hands-on exercise design as needed.</p>
+          <p>One five-day learning experience progressed from analyzing packets to practicing a guided threat hunt:</p>
+          <ol>
+            {elasticDays.map((d) => <li><strong>{d[0]}: {d[1]}</strong> · {d[2]}</li>)}
+          </ol>
+          <p>I worked with other instructors and contributed to the curriculum rather than claiming sole authorship.</p>
+        </div>
+      </details>
+      <details>
+        <summary><strong>Corelight · Security Education</strong> · 2025–Present</summary>
+        <div class="body-copy">
+          <p>At Corelight, I operate in two primary functional roles: <strong>Educator</strong> and <strong>Curriculum Developer</strong>. I describe these responsibilities through two modes, <strong>Education</strong> and <strong>Creation</strong>.</p>
+          <h3>Education Mode</h3>
+          <p>I prepare and facilitate technical learning experiences intended to develop Knowledge & Understanding, Skills & Capabilities, and Confidence.</p>
+          <ol>{education.map((item) => <li><strong>{item[0]}:</strong> {item[1]}</li>)}</ol>
+          <h3>Creation Mode</h3>
+          <p>I develop and improve instructional systems and practical resources.</p>
+          <ol>{creation.map((item) => <li><strong>{item[0]}:</strong> {item[1]}</li>)}</ol>
+          <p>Education informs Creation. Creation enables Education.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+</BaseLayout>

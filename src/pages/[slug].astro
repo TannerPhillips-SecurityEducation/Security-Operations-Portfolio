@@ -3,24 +3,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { navigation } from '../data/site';
 
 export function getStaticPaths() {
-  return navigation
-    .filter((section) => section.path !== '/')
-    .map((section) => ({
-      params: { slug: section.path.replaceAll('/', '') },
-      props: { section },
-    }));
+  return navigation.filter((section) => section.path !== '/').map((section) => ({
+    params: { slug: section.path.replaceAll('/', '') },
+    props: { section },
+  }));
 }
-
 const { section } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
 const aboutTopics = [
-  { label: 'Personal Interests', path: '/about/interests/' },
-  { label: 'Philosophy', path: '/about/philosophy/' },
+  { label:'My Journey', path:'/about/journey/', description:'A timeline of selected professional milestones.' },
+  { label:'Professional Experience', path:'/about/experience/', description:'Cyber operations, education, and curriculum creation.' },
+  { label:'Personal Interests', path:'/about/interests/', description:'Making, philosophy, writing, computing, and interactive worlds.' },
+  { label:'Philosophy', path:'/about/philosophy/', description:'My evolving perspective on knowledge, freedom, and responsibility.' },
+  { label:'Technical Capabilities', path:'/about/capabilities/', description:'Five practice-based domains with supporting experience.' },
+  { label:'Professional Credentials', path:'/about/credentials/', description:'Previously held certifications and continuing development.' },
 ];
 ---
 <BaseLayout title={section.label}>
   <header class="page-heading">
     <h1>{section.label}</h1>
+    {section.label === 'About' && (
+      <div class="body-copy">
+        <p>I'm Tanner. I'm driven by curiosity and a desire to understand how things work. I enjoy questioning assumptions, exploring possibilities, learning new things, and turning ideas into something tangible. My interests span philosophy, technology, engineering, education, and creative experimentation.</p>
+      </div>
+    )}
   </header>
   <section class="section" aria-label={section.label + ' content'}>
     {section.label === 'About' && (
@@ -28,6 +34,7 @@ const aboutTopics = [
         {aboutTopics.map((topic) => (
           <a class="card card-link" href={sitePath(topic.path)}>
             <h2>{topic.label}</h2>
+            <p>{topic.description}</p>
           </a>
         ))}
       </div>

@@ -55,3 +55,13 @@ h3 { font-size: 1.15rem; }
 @media (prefers-color-scheme: dark) {
   :root { color: #e4edf5; background: #101923; --surface: #172332; --border: #3b4a5a; --muted: #b6c6d3; --accent: #75d5e6; --accent-contrast: #09171c; }
 }
+
+/* Neutral structural formatting for expandable content, not the final theme. */
+.timeline { border-left: 1px solid var(--border); padding-left: 1.25rem; list-style: none; margin: 1.5rem 0 2rem; }
+.timeline li { margin-bottom: 1rem; }
+.experience-list { display: grid; gap: 1rem; margin: 1.5rem 0 2rem; }
+.timeline details, .experience-list details { background: var(--surface); border: 1px solid var(--border); border-radius: .55rem; padding: 1.15rem; }
+.timeline summary, .experience-list summary { cursor: pointer; }
+.timeline details[open] summary, .experience-list details[open] summary { margin-bottom: 1rem; }
+.body-copy h3 { margin-top: 1.6rem; }
+.body-copy li { margin-bottom: .45rem; }
