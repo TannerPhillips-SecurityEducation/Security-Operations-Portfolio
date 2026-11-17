@@ -4,11 +4,10 @@ import { identity, navigation } from '../data/site';
 
 interface Props {
   title: string;
-  description: string;
 }
-const { title, description } = Astro.props;
+const { title } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
-const pageTitle = title === identity.name ? identity.name + ' | ' + identity.headline : title + ' | ' + identity.name;
+const pageTitle = title + ' | ' + identity.name;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 <!doctype html>
@@ -16,7 +15,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
     <link rel="canonical" href={canonicalUrl} />
     <title>{pageTitle}</title>
@@ -36,8 +34,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
       </header>
       <main id="main"><slot /></main>
       <footer class="site-footer">
-        <p>© {new Date().getFullYear()} {identity.name}. Personal work and views unless otherwise stated.</p>
-        <a href={identity.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <p>© {new Date().getFullYear()} {identity.name}</p>
       </footer>
     </div>
   </body>

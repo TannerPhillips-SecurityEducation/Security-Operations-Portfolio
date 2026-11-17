@@ -1,47 +1,33 @@
-# Security Operations Portfolio
+# Tanner Phillips | Personal Website
 
-**Network Security | Threat Hunting | Security Engineering | Technical Education**
+A minimal website template with the approved navigation and empty content sections.
 
-This portfolio showcases professional focus, developing projects, research, and practical security education. Its companion repository, [Security Education](https://github.com/TannerPhillips-SecurityEducation/Security-Education), provides deeper technical explanations and learning materials.
+## Categories
 
-## Focus areas
+- Home
+- About
+- Projects
+- Knowledge
+- Publications
+- Education
+- Contact
 
-| Domain | Practice |
-| --- | --- |
-| Network Security Operations (NSO) | Turning network activity into defensible security action |
-| Network Security Monitoring (NSM) | Capture & Collect; Transform & Record; Store & Retrieve |
-| Network Telemetry Analytics (NTA) | Select; Compare; Correlate; Aggregate; Calculate; Present |
-| Network Detection & Response (NDR) | Detection; Investigation; Response |
-| Threat Hunting | Hypothesis-driven analysis and evidence assessment |
-| Security Education | Knowledge transfer, skill development, and mindset development |
+## Development
 
-## Featured work
+Requires a supported Node.js version.
 
-These are **ongoing areas of work**, not assertions that public releases or validated implementations are already available.
+```sh
+npm install
+npm run dev
+npm run build
+```
 
-- **Network Security Operations:** Foundations, system models, architecture, and educational resources.
-- **Zeek LDE (Zeek Learning & Development Environment):** A Zeek-focused learning and development environment covering Learn, Architect, Engineer, Develop, and Analyze.
-- **Foundations of Network Threat Hunting:** Methodology and analytical models for network-oriented investigation.
-- **Practical Technical Education:** Hands-on learning, labs, references, and assessment frameworks.
+## Publishing
 
-## Technical work and publications
+The GitHub Actions workflow builds the static website for GitHub Pages. To publish, open **Settings → Pages** and select **GitHub Actions** as the source.
 
-Additional project repositories, publications, demonstrations, and validated results will be linked here as they become available. Each project entry should distinguish *concept*, *design*, *implementation*, and *verified result*.
+## Architecture
 
-## Explore and connect
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-- [Security Education: companion knowledge hub](https://github.com/TannerPhillips-SecurityEducation/Security-Education)
-- [GitHub profile](https://github.com/TannerPhillips-SecurityEducation)
-- LinkedIn profile: link pending
-
----
-
-*Maintained as a living professional portfolio. Views and examples in this repository are personal unless explicitly stated otherwise.*
-
-## Website
-
-The approved [personal website architecture](docs/ARCHITECTURE.md) is implemented as an Astro static site. Node.js 24 is recommended. Run npm install, then npm run dev for local development or npm run build to generate static output.
-
-To publish using GitHub Pages, open repository Settings > Pages and set the publishing source to GitHub Actions. The expected URL after successful deployment is https://tannerphillips-securityeducation.github.io/Security-Operations-Portfolio/.
-
-Visual identity and additional public profile/contact links remain to be decided together.
+**Current status:** Structure only. Website content will be authored through a one-question-at-a-time interview. The project retains its Git history.

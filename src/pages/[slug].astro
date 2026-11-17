@@ -1,37 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { sections } from '../data/site';
+import { navigation } from '../data/site';
 
 export function getStaticPaths() {
-  return sections.map((section) => ({ params: { slug: section.slug }, props: { section } }));
+  return navigation
+    .filter((section) => section.path !== '/')
+    .map((section) => ({
+      params: { slug: section.path.replaceAll('/', '') },
+      props: { section },
+    }));
 }
+
 const { section } = Astro.props;
 ---
-<BaseLayout title={section.title} description={section.intro}>
+<BaseLayout title={section.label}>
   <header class="page-heading">
-    <p class="eyebrow">{section.title}</p>
-    <h1>{section.title}</h1>
-    <p class="lead">{section.intro}</p>
+    <h1>{section.label}</h1>
   </header>
-
-  <div class="body-copy">
-    {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-  </div>
-
-  <section class="section" aria-label={section.title + ' topics'}>
-    <div class="card-grid">
-      {section.topics.map((topic) => (
-        <article class="card">
-          <h2>{topic.title}</h2>
-          <p>{topic.detail}</p>
-        </article>
-      ))}
-    </div>
+  <section class="section" aria-label={section.label + ' content'}>
+    <!-- Reserved for content agreed during the website interview. -->
   </section>
-
-  {section.links.length > 0 && (
-    <div class="resource-links">
-      {section.links.map((link) => <a class="primary-link" href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
-    </div>
-  )}
 </BaseLayout>
