@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/showcase';
+
+export function getStaticPaths() {
+  return projects.map(project => ({ params: {slug: project.slug}, props: {project} }));
+}
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title={project.title}>
+  <header class="page-heading">
+    <p><a href={base + '/projects/'}>Projects</a></p>
+    <p class="eyebrow">{project.category} · {project.status === 'completed' ? 'Completed' : 'Demonstrable'}</p>
+    <h1>{project.title}</h1>
+    <p class="lead">{project.summary}</p>
+  </header>
+  <section class="section" aria-labelledby="overview-heading">
+    <h2 id="overview-heading">Overview</h2>
+    <p class="body-copy">{project.overview}</p>
+    {project.releasedAt && <p class="knowledge-status">Public result date: <time datetime={project.releasedAt}>{project.releasedAt}</time></p>}
+    {project.technologies && project.technologies.length > 0 && (
+      <p class="body-copy"><strong>Technologies and methods:</strong> {project.technologies.join(' · ')}</p>
+    )}
+  </section>
+  {project.sections.length > 0 && (
+    <section class="section" aria-labelledby="explore-project-heading">
+      <h2 id="explore-project-heading">Explore the Work</h2>
+      <p class="body-copy">Open any topic to explore the project in greater depth.</p>
+      <div class="experience-list">
+        {project.sections.map(section => (
+          <details>
+            <summary>{section.title}</summary>
+            <div class="body-copy"><p>{section.description}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+  <section class="section" aria-labelledby="evidence-heading">
+    <h2 id="evidence-heading">Public Evidence</h2>
+    <p class="body-copy">These links provide inspectable demonstrations, releases, or artifacts associated with this project.</p>
+    <ul class="public-evidence-list">
+      {project.evidence.map(item => <li><a href={item.url} rel="noopener noreferrer" target="_blank">{item.label}</a></li>)}
+    </ul>
+  </section>
+</BaseLayout>

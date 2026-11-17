@@ -7,9 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "predev": "node scripts/sync-knowledge.mjs",
-    "prebuild": "node scripts/sync-knowledge.mjs",
-    "sync:knowledge": "node scripts/sync-knowledge.mjs"
+    "predev": "node scripts/validate-showcase.mjs && node scripts/sync-knowledge.mjs",
+    "prebuild": "node scripts/validate-showcase.mjs && node scripts/sync-knowledge.mjs",
+    "sync:knowledge": "node scripts/sync-knowledge.mjs",
+    "validate:showcase": "node scripts/validate-showcase.mjs"
   },
   "engines": {
     "node": ">=22.23.4"

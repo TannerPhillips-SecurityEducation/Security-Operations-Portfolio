@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { publications } from '../../data/showcase';
+export function getStaticPaths() {
+  return publications.map(publication=>({params:{slug:publication.slug},props:{publication}}));
+}
+const { publication } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const current = publication.editions.find(e=>e.id===publication.currentEdition);
+const older = publication.editions.filter(e=>e.id!==publication.currentEdition)
+  .sort((a,b)=>b.releasedAt.localeCompare(a.releasedAt));
+---
+<BaseLayout title={publication.title}>
+  <header class="page-heading">
+    <p><a href={base + '/publications/'}>Publications</a></p>
+    <p class="eyebrow">{publication.kind} · Published work</p>
+    <h1>{publication.title}</h1>
+    <p class="lead">{publication.summary}</p>
+  </header>
+  {current && (
+    <section class="section" aria-labelledby="current-edition">
+      <h2 id="current-edition">Current Edition · {current.version}</h2>
+      <p class="body-copy">Released <time datetime={current.releasedAt}>{current.releasedAt}</time>.</p>
+      <div class="resource-links">
+        {current.markdownId && <a class="primary-link" href={base+'/publications/read/'+current.markdownId+'/'}>Read on this website</a>}
+        <a class="secondary-link" href={current.publicUrl} rel="noopener noreferrer" target="_blank">Original publication</a>
+        {(current.downloads || []).map(item=><a class="secondary-link" href={item.url} rel="noopener noreferrer" target="_blank">{item.label}</a>)}
+      </div>
+      {current.citation && <div class="body-copy"><h3>Suggested Citation</h3><p>{current.citation}</p></div>}
+    </section>
+  )}
+  <section class="section" aria-labelledby="edition-history">
+    <h2 id="edition-history">Published Edition History</h2>
+    {older.length > 0 ? (
+      <div class="experience-list">
+        {older.map(edition=>(
+          <details>
+            <summary>Edition {edition.version} · <time datetime={edition.releasedAt}>{edition.releasedAt}</time></summary>
+            <div class="resource-links">
+              {edition.markdownId && <a class="secondary-link" href={base+'/publications/read/'+edition.markdownId+'/'}>Read this edition</a>}
+              <a class="secondary-link" href={edition.publicUrl} target="_blank" rel="noopener noreferrer">Original release</a>
+              {(edition.downloads || []).map(item=><a class="secondary-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.label}</a>)}
+            </div>
+            {edition.citation && <p class="body-copy">{edition.citation}</p>}
+          </details>
+        ))}
+      </div>
+    ) : <p class="body-copy">This publication currently has one released edition.</p>}
+  </section>
+</BaseLayout>

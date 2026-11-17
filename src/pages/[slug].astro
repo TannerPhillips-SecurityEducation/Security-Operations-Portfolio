@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { navigation } from '../data/site';
 
 export function getStaticPaths() {
-  return navigation.filter((section) => section.path !== '/' && section.path !== '/knowledge/' && section.path !== '/education/').map((section) => ({
+  return navigation.filter((section) => section.path !== '/' && section.path !== '/knowledge/' && section.path !== '/education/' && section.path !== '/projects/' && section.path !== '/publications/').map((section) => ({
     params: { slug: section.path.replaceAll('/', '') },
     props: { section },
   }));

@@ -55,3 +55,16 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - Documents include working architectural material and unreviewed subjects; no independent acceptance or final publication status is implied.
 - **Semantic graph metadata/predicates remain unapproved in the source repository.** No such categories are invented in the website.
 - Final visual theme, TSP monogram, and interactive `TSP.yaml` homepage are still deliberately deferred.
+
+## Projects & Publications curation (v0.7)
+
+- `/projects/`: Manually selected, completed or demonstrable project gallery. No automatic repository import.
+- `/projects/[slug]/`: Progressive case studies, with proof links and expandable technical sections.
+- `/publications/`: Deliberately published works only. Current published edition displayed first.
+- `/publications/[slug]/`: Release metadata, optional downloads, citations, and published edition history.
+- `/publications/read/[...edition]/`: Native Markdown edition reading, only when explicitly approved and registered.
+- `src/data/showcase.json`: Explicit curation manifest, currently empty by design.
+- `scripts/validate-showcase.mjs`: Refuses malformed, unapproved, evidence-free, or unpublished entries before building.
+- `docs/CURATION.md`: Editorial publication policy and release instructions.
+- No unfinished projects, personal drafts, private artifacts, or automatically imported repositories are presented as releases.
+- No Obsidian Prism or interactive TSP.yaml design changes.

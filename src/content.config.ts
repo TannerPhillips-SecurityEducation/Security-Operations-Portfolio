@@ -11,4 +11,14 @@ const knowledge = defineCollection({
   }),
 });
 
-export const collections = { knowledge };
+// Only Markdown editions explicitly listed in the approved publication manifest
+// can be exposed through the Publications reading route.
+const releases = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/releases',
+    generateId: ({ entry }) => entry.replace(/\.md$/i, ''),
+  }),
+});
+
+export const collections = { knowledge, releases };

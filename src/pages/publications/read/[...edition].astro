@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { publications } from '../../../data/showcase';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('releases');
+  const curated = publications.flatMap(publication =>
+    publication.editions.filter(edition => edition.markdownId).map(edition => ({ publication, edition }))
+  );
+  return entries.flatMap(entry => {
+    const match = curated.find(item => item.edition.markdownId === entry.id);
+    if (!match) return [];
+    return [{params: {edition: entry.id}, props: {entry, publication: match.publication, release: match.edition}}];
+  });
+}
+const { entry, publication, release } = Astro.props;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title={publication.title + ' · Edition ' + release.version}>
+  <header class="page-heading">
+    <p><a href={base + '/publications/'+publication.slug+'/'}>{publication.title}</a></p>
+    <p class="eyebrow">Published Edition · {release.version}</p>
+    <h1>{publication.title}</h1>
+    <p class="knowledge-status">Released <time datetime={release.releasedAt}>{release.releasedAt}</time></p>
+  </header>
+  <article class="body-copy knowledge-prose"><Content /></article>
+  <div class="resource-links">
+    <a class="secondary-link" href={base + '/publications/'+publication.slug+'/'}>All published editions</a>
+    <a class="secondary-link" href={release.publicUrl} target="_blank" rel="noopener noreferrer">Original release</a>
+  </div>
+</BaseLayout>

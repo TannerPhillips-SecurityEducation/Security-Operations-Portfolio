@@ -45,3 +45,16 @@ Run `npm run sync:knowledge` to refresh the generated copy locally. `npm run dev
 The website workflow also performs a scheduled rebuild each day, although GitHub's scheduling service may delay a run. No knowledge source content is edited, and document links are not interpreted as formally approved semantic relation types.
 
 **Publication status:** Many knowledge documents are working drafts, inventories, or architectural registers, not completed peer-reviewed references.
+
+## Curated Projects & Publications
+
+The Projects and Publications sections have approval-gated data-driven listing and detail templates.
+
+- [Projects page](src/pages/projects/index.astro)
+- [Publications page](src/pages/publications/index.astro)
+- [Curation manifest](src/data/showcase.json)
+- [Editorial rules](docs/CURATION.md)
+
+Initially both collections are intentionally empty. No project is featured until it is explicitly selected, completed or demonstrable, and supported by public evidence. Only intentionally published editions are listed in Publications.
+
+To validate editorial entries run `npm run validate:showcase`. Published Markdown editions are read natively from `src/content/releases/` when referenced by an approved edition record.
