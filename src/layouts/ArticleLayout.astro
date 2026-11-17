@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const aboutPath = import.meta.env.BASE_URL.replace(/\/$/, '') + '/about/';
+---
+<BaseLayout title={frontmatter.title}>
+  <header class="page-heading">
+    <p><a href={aboutPath}>About</a></p>
+    <h1>{frontmatter.title}</h1>
+  </header>
+  <article class="body-copy">
+    <slot />
+  </article>
+</BaseLayout>

@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.2 (content reset), 2026-11-17
+**Version:** v0.3 (approved About content), 2026-11-17
 
 ## Approved public identity
 
@@ -18,24 +18,32 @@
 6. Education
 7. Contact
 
-## Template
+## Current template
 
 - Astro static site
 - Shared responsive layout and navigation
-- Home page links to each category
-- Category pages retain headings and empty content areas
+- Home page links to each top-level category
 - GitHub Actions workflow for deployment to GitHub Pages
-- Existing styles are temporary; visual identity is not approved yet
+- Existing styles are temporary; Obsidian Prism and the interactive TSP.yaml visual experience are **not implemented**
 
-## Content policy
+## Approved and published About content
 
-All authored page copy, featured projects, professional claims, external resource links, sample articles, cards, and contact copy have been removed from the public website.
+- `/about/interests/`: Personal Interests, first-person writing in five approved areas
+- `/about/philosophy/`: Personal Philosophy, first-person writing with five approved principles
+- `/about/`: Links to those two approved pages
+- The drafts' wording is preserved from the November 17, 2026 website interview
 
-Do not populate sections with assumptions or generic placeholder copy. Content will be defined through the user's website interview and explicitly reviewed before publishing.
+## Content rules
+
+- Other sections remain empty until their content is approved for implementation.
+- Public content must exclude family and friends, their identities, private relationships, and geographic location.
+- Do not add private, unverified, or unfinished professional claims.
+- Current visual identity decisions will be implemented only after the visual design interview is complete.
+- `TSP.yaml` is an approved planned progressive identity interface, not yet built. When built, it will link to these About pages.
 
 ## Repositories
 
 - Website source: TannerPhillips-SecurityEducation/Security-Operations-Portfolio
 - Separate knowledge source: TannerPhillips-SecurityEducation/Security-Education
 
-This reset does not modify the knowledge repository or Git history.
+This update does not modify the knowledge repository or Git history.

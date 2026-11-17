@@ -12,12 +12,25 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props;
+const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
+const aboutTopics = [
+  { label: 'Personal Interests', path: '/about/interests/' },
+  { label: 'Philosophy', path: '/about/philosophy/' },
+];
 ---
 <BaseLayout title={section.label}>
   <header class="page-heading">
     <h1>{section.label}</h1>
   </header>
   <section class="section" aria-label={section.label + ' content'}>
-    <!-- Reserved for content agreed during the website interview. -->
+    {section.label === 'About' && (
+      <div class="card-grid">
+        {aboutTopics.map((topic) => (
+          <a class="card card-link" href={sitePath(topic.path)}>
+            <h2>{topic.label}</h2>
+          </a>
+        ))}
+      </div>
+    )}
   </section>
 </BaseLayout>

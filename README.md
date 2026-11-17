@@ -1,6 +1,6 @@
 # Tanner Phillips | Personal Website
 
-A minimal website template with the approved navigation and empty content sections.
+A personal website built with Astro, using the seven approved navigation categories.
 
 ## Categories
 
@@ -11,6 +11,13 @@ A minimal website template with the approved navigation and empty content sectio
 - Publications
 - Education
 - Contact
+
+## Approved About content
+
+- [Personal Interests](src/pages/about/interests.md)
+- [Personal Philosophy](src/pages/about/philosophy.md)
+
+The About page links to these two first-person articles. Other category pages remain empty until their public content is approved. The visual theme and interactive TSP.yaml experience are planned, not yet implemented.
 
 ## Development
 
@@ -24,10 +31,8 @@ npm run build
 
 ## Publishing
 
-The GitHub Actions workflow builds the static website for GitHub Pages. To publish, open **Settings → Pages** and select **GitHub Actions** as the source.
+The GitHub Actions workflow builds the static website for GitHub Pages. Configure **Settings → Pages → GitHub Actions**.
 
 ## Architecture
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
-
-**Current status:** Structure only. Website content will be authored through a one-question-at-a-time interview. The project retains its Git history.
