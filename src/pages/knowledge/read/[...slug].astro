@@ -26,7 +26,7 @@ const links = doc.links
   .map(file => catalog.documents.find(item => item.file === file))
   .filter(Boolean).slice(0, 24);
 ---
-<BaseLayout title={doc.title}>
+<BaseLayout title={doc.title} description={(doc.excerpt || 'Read the canonical knowledge document: ' + doc.title).slice(0, 165)}>
   <nav aria-label="Knowledge breadcrumbs" class="knowledge-breadcrumbs">
     <a href={root}>Knowledge</a>
     {crumbs.map(item => <><span aria-hidden="true">/</span><a href={item.href}>{item.title}</a></>)}

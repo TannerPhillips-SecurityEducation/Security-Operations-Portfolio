@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
+---
+<BaseLayout title="Page Not Found" description="This address doesn't have a page. Return to Tanner S. Phillips's website or explore the Knowledge library." robots="noindex, follow">
+  <header class="page-heading">
+    <p class="eyebrow">404 / NOT FOUND</p>
+    <h1>This path goes nowhere.</h1>
+    <p class="lead">The page may have moved, or the address might not be quite right. The rest of the site is still here.</p>
+  </header>
+  <section class="section" aria-labelledby="find-another-path">
+    <div class="narrative-panel">
+      <h2 id="find-another-path">Choose another direction.</h2>
+      <p>I organize this site around the things I learn, build, write, and teach. If the link you followed is no longer available, these are good places to begin again.</p>
+      <div class="resource-links">
+        <a class="primary-link" href={sitePath('/')}>Return to TSP.yaml</a>
+        <a class="secondary-link" href={sitePath('/about/')}>About me</a>
+        <a class="secondary-link" href={sitePath('/knowledge/browse/')}>Browse Knowledge</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.11, connected narratives and guided reading paths (2026-11-17).
+**Version:** v0.12, performance, accessibility, and metadata refinements (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -131,3 +131,14 @@ The Obsidian Prism visual identity, monogram, responsive layout, and reduced-mot
 - `scripts/audit-site-links.mjs` checks generated internal href/src destinations and HTML heading anchors.
 - GitHub Actions runs the audit after the static build and before publishing, failing deployment on unresolved internal links.
 - Source manuscripts, editorial review statuses, and the original Security-Education repository remain unmodified.
+
+## Refinement and optimization (v0.12)
+
+- **Central config:** `site.config.mjs` is authoritative for the public site origin and GitHub Pages project base path. Astro, the Knowledge synchronizer, site metadata generator, and internal-link audit derive their paths from it.
+- **Graph payload:** The upstream Knowledge catalog retains its full editorial status and source URL metadata, but the browser graph receives a generated compact index containing only file paths, titles, slugs, and integer link references. Graph meaning is unchanged: Markdown links are not inferred semantic predicates.
+- **Navigation:** The existing desktop menu remains. Under the mobile breakpoint, an accessible native `details` menu provides all seven categories without relying on hidden horizontal scrolling or JavaScript.
+- **Metadata:** `BaseLayout.astro` includes canonical and Open Graph URLs, title and description, summary-card tags, a sitemap link, and privacy-scoped homepage Person structured data containing only approved name, role, and public profile links. `ArticleLayout`, Knowledge references, and project/publication templates supply page-specific descriptions.
+- **Static site discovery:** `scripts/generate-site-metadata.mjs` runs as the npm `postbuild` hook and writes `dist/sitemap.xml` and `dist/robots.txt` from the generated HTML routes; the 404 page is excluded from the sitemap and marked noindex. GitHub Pages project-scoped robots.txt does not override host-wide robots rules.
+- **Validation:** `scripts/audit-site-links.mjs` verifies referenced assets and HTML fragment targets, required metadata files, and sitemap completeness before GitHub Actions deploys.
+- **Privacy:** No geographic location, private channels, confidential work, or behavioral tracking is added. Source Knowledge content and curation manifests are unchanged.
+

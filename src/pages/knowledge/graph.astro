@@ -31,8 +31,13 @@ const docs = catalog.documents;
     <noscript><p>Enable JavaScript to interact with the graph. The full <a href={base + '/knowledge/browse/'}>document browser</a> is available without it.</p></noscript>
   </section>
   <script>
-    import catalog from '../../data/generated/knowledge-catalog.json';
-    const docs = catalog.documents;
+    import compactGraph from '../../data/generated/knowledge-graph.json';
+    type GraphTuple = [string, string, string, number[]];
+    const graphRows = compactGraph.documents as unknown as GraphTuple[];
+    const docs = graphRows.map(([file, title, slug, indices]) => ({
+      file, title, slug,
+      links: indices.map(index => graphRows[index]?.[0]).filter((name): name is string => typeof name === 'string'),
+    }));
     const byFile = new Map(docs.map(d => [d.file, d]));
     const select = document.querySelector<HTMLSelectElement>('#graph-document');
     const svg = document.querySelector<SVGSVGElement>('#knowledge-graph');

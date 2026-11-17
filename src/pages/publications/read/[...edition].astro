@@ -18,7 +18,7 @@ const { entry, publication, release } = Astro.props;
 const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title={publication.title + ' · Edition ' + release.version}>
+<BaseLayout title={publication.title + ' · Edition ' + release.version} description={publication.summary}>
   <header class="page-heading">
     <p><a href={base + '/publications/'+publication.slug+'/'}>{publication.title}</a></p>
     <p class="eyebrow">Published Edition · {release.version}</p>

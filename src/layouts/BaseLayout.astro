@@ -6,12 +6,22 @@ import { identity, navigation, contactChannels } from '../data/site';
 interface Props {
   title: string;
   description?: string;
+  robots?: string;
 }
 
-const { title, description = "Tanner S. Phillips: Security Educator, Engineer & Researcher. Exploring security, learning, technology, philosophy, and creative systems." } = Astro.props;
+const { title, description = "Tanner S. Phillips: Security Educator, Engineer & Researcher. Exploring security, learning, technology, philosophy, and creative systems.", robots = 'index, follow' } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
 const pageTitle = title === 'Home' ? 'TSP.yaml | Tanner S. Phillips' : title + ' | ' + identity.name;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const homepageURL = new URL(sitePath('/'), Astro.site).toString();
+const structuredPerson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: identity.name,
+  url: homepageURL,
+  jobTitle: 'Security Educator, Engineer & Researcher',
+  sameAs: contactChannels.map(channel => channel.url),
+}).replace(/</g, '\\u003c');
 const currentPath = Astro.url.pathname;
 const active = (path: string) => path === '/'
   ? currentPath === sitePath('/')
@@ -25,15 +35,24 @@ const active = (path: string) => path === '/'
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0B0F18" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={identity.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href={sitePath('/sitemap.xml')} />
     <link rel="icon" type="image/svg+xml" href={sitePath('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{pageTitle}</title>
+    {title === 'Home' && <script type="application/ld+json" set:html={structuredPerson} />}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -54,6 +73,16 @@ const active = (path: string) => path === '/'
             ))}
           </ul>
         </nav>
+        <details class="mobile-nav">
+          <summary>Explore the website <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile primary navigation">
+            <ul>
+              {navigation.map(item => (
+                <li><a href={sitePath(item.path)} aria-current={active(item.path) ? 'page' : undefined}>{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </details>
       </header>
       <main id="main"><slot /></main>
       <footer class="site-footer">

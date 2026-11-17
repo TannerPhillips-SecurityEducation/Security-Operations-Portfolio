@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
+import { SITE_ORIGIN, SITE_BASE } from './site.config.mjs';
 
 export default defineConfig({
-  site: 'https://tannerphillips-securityeducation.github.io',
-  base: '/Security-Operations-Portfolio',
+  site: SITE_ORIGIN,
+  base: SITE_BASE,
   trailingSlash: 'always',
 });

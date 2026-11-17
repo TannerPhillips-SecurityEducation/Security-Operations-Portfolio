@@ -2,12 +2,14 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { SITE_BASE } from '../site.config.mjs';
 
 const REPO = 'TannerPhillips-SecurityEducation/Security-Education';
 const REPO_URL = 'https://github.com/' + REPO + '.git';
-const PUBLIC_BASE = '/Security-Operations-Portfolio/knowledge/read/';
+const PUBLIC_BASE = SITE_BASE + 'knowledge/read/';
 const contentDir = path.resolve('src/content/knowledge');
 const catalogPath = path.resolve('src/data/generated/knowledge-catalog.json');
+const graphPath = path.resolve('src/data/generated/knowledge-graph.json');
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tsp-knowledge-'));
 const checkout = path.join(tempDir, 'source');
 
@@ -146,6 +148,19 @@ try {
   };
   fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
   fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
+  // Compact link data for the client-side graph: indexes replace repeated paths.
+  // Excerpts, editorial status, and full GitHub URLs are intentionally omitted.
+  const indexByFile = new Map(docs.map((doc, index) => [doc.file, index]));
+  const compactGraph = {
+    documents: docs.map(doc => [
+      doc.file,
+      doc.title,
+      doc.slug,
+      doc.links.map(file => indexByFile.get(file)).filter(Number.isInteger),
+    ]),
+  };
+  fs.writeFileSync(graphPath, JSON.stringify(compactGraph) + '\n');
+  console.log('Compact graph index: ' + Buffer.byteLength(JSON.stringify(compactGraph)) + ' bytes.');
   console.log('Synced ' + docs.length + ' Markdown documents from ' + REPO + ' @ ' + revision.slice(0, 12));
   console.log('Found ' + docs.reduce((n, doc) => n + doc.links.length, 0) + ' unique per-document Markdown links.');
   console.log('Adjusted ' + correctedFragments + ' unambiguous legacy section fragments in generated website links; source unchanged.');

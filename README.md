@@ -113,3 +113,17 @@ The landing page, reader, Education page, About page, and existing graph explore
 During every build, the Knowledge synchronizer corrects only unambiguous legacy section-fragment references in generated website links. It does not change or rewrite the authoritative upstream document headings.
 
 After building, GitHub Actions runs `npm run audit:links` to verify internal HTML resources, navigation destinations, and heading-fragment targets. Broken links now fail the deployment rather than being published silently.
+
+## Site optimization and validation (v0.12)
+
+The public content, Obsidian Prism design, YAML identity source, knowledge provenance, and manual release gates remain unchanged. Refinements focus on usability, delivery weight, and reliability.
+
+- **Mobile navigation:** On small screens, a native, keyboard-accessible menu replaces the horizontally scrolling seven-link navigation bar. It requires no client-side JavaScript.
+- **Knowledge graph:** The synchronizer emits a compact, indexed document-link dataset at `src/data/generated/knowledge-graph.json`. The graph client loads this minimal dataset rather than bundling the full catalog with excerpts and source metadata.
+- **Metadata:** Canonical URLs, descriptive article metadata, Open Graph and social preview tags, structured public Person metadata, and a linked sitemap improve source discovery.
+- **Sitemap and 404:** `npm run build` automatically writes a sitemap, project-level `robots.txt`, and a branded 404 page.
+- **Build checks:** `npm run audit:links` now checks sitemap completeness and the 404/robots files in addition to all internal document links and fragment targets.
+- **Configuration:** `site.config.mjs` centralizes the deployment origin and GitHub Pages base path, shared by Astro and the sync/audit/metadata scripts.
+- **Knowledge browsing:** Filter input reports the number of results and explains an empty result state.
+
+The `robots.txt` lives under the GitHub Pages project path. Crawlers follow domain-root robots rules; the sitemap is also explicitly linked from every page. No visitor analytics or trackers are introduced.

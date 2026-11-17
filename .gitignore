@@ -8,3 +8,4 @@ dist/
 # Generated from the public Security-Education repository; never edit these copies.
 /src/content/knowledge/
 /src/data/generated/knowledge-catalog.json
+/src/data/generated/knowledge-graph.json

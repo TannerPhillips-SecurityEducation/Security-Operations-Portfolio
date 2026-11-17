@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { SITE_ORIGIN, SITE_BASE } from '../site.config.mjs';
 
 const root = path.resolve('dist');
-const hostname = 'tannerphillips-securityeducation.github.io';
-const basePath = '/Security-Operations-Portfolio/';
-const origin = 'https://' + hostname;
+const hostname = new URL(SITE_ORIGIN).hostname;
+const basePath = SITE_BASE;
+const origin = SITE_ORIGIN;
 const files = new Set();
 const pages = [];
 const bad = [];
@@ -43,7 +44,7 @@ for (const page of pages) {
   const pageURL = origin + basePath + page;
   for (const match of content(page).matchAll(/\b(?:href|src)="([^"]*)"/g)) {
     const ref = decode(match[1]);
-    if (!ref || ref.startsWith(('data:')) || ref.startsWith('mailto:') || ref.startsWith('tel:')) continue;
+    if (!ref || ref.startsWith('data:') || ref.startsWith('mailto:') || ref.startsWith('tel:')) continue;
     let parsed;
     try { parsed = new URL(ref, pageURL); }
     catch { bad.push(page + ': unparseable URL ' + ref); continue; }
@@ -78,6 +79,29 @@ for (const page of pages) {
       }
     }
   }
+}
+// Verify the sitemap is complete, canonical, and free of missing pages.
+for (const file of ['404.html', 'robots.txt', 'sitemap.xml']) {
+  if (!files.has(file)) bad.push('Required generated file missing: ' + file);
+}
+if (files.has('sitemap.xml')) {
+  const xml = content('sitemap.xml');
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(/&amp;/g, '&'));
+  const expected = pages.filter(page => page !== '404.html').map(page =>
+    origin + basePath + (page === 'index.html' ? '' : page.endsWith('/index.html')
+      ? page.slice(0, -'index.html'.length) : page)
+  );
+  if (urls.length !== expected.length || new Set(urls).size !== urls.length) {
+    bad.push('Sitemap has duplicates or a different page count: expected ' + expected.length + ', found ' + urls.length);
+  }
+  const actual = new Set(urls);
+  for (const url of expected) {
+    if (!actual.has(url)) bad.push('Sitemap is missing canonical page: ' + url);
+  }
+  if (urls.some(url => url.includes('/404.html'))) bad.push('Sitemap must not index the 404 page.');
+}
+if (files.has('robots.txt') && !content('robots.txt').includes(origin + basePath + 'sitemap.xml')) {
+  bad.push('Project robots.txt does not reference the generated sitemap.');
 }
 if (bad.length) {
   for (const issue of bad.slice(0, 40)) console.error('BROKEN: ' + issue);
