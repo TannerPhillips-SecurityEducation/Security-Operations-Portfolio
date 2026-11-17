@@ -91,6 +91,7 @@ try {
     return [file, new Set(ids)];
   }));
   let correctedFragments = 0;
+  let unavailableReferences = 0;
   const docs = [];
   fs.rmSync(contentDir, { recursive: true, force: true });
   fs.mkdirSync(contentDir, { recursive: true });
@@ -105,7 +106,20 @@ try {
         if (image) return match;
         const url = wrappedUrl.replace(/^</, '').replace(/>$/, '');
         const target = resolveLinkedMarkdown(file, url, known);
-        if (!target) return match;
+        if (!target) {
+          // Authored source documents can link to subjects that have only
+          // been inventoried, not yet written. Preserve the label and state
+          // the absence rather than publishing a broken local link.
+          const destination = url.split('#', 1)[0].split('?', 1)[0];
+          const localMarkdown = destination.toLowerCase().endsWith('.md') &&
+            !url.startsWith('/') && !url.startsWith('//') &&
+            !/^[a-z][a-z0-9+.-]*:/i.test(url);
+          if (localMarkdown) {
+            unavailableReferences++;
+            return label + ' (linked article not yet available)';
+          }
+          return match;
+        }
         links.add(target);
         const rawFragment = url.includes('#') ? url.split('#').slice(1).join('#') : '';
         let fragment = rawFragment;
@@ -164,6 +178,7 @@ try {
   console.log('Synced ' + docs.length + ' Markdown documents from ' + REPO + ' @ ' + revision.slice(0, 12));
   console.log('Found ' + docs.reduce((n, doc) => n + doc.links.length, 0) + ' unique per-document Markdown links.');
   console.log('Adjusted ' + correctedFragments + ' unambiguous legacy section fragments in generated website links; source unchanged.');
+  console.log('Labeled ' + unavailableReferences + ' links to source articles that have not yet been written; source unchanged.');
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }

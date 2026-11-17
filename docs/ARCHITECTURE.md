@@ -142,3 +142,8 @@ The Obsidian Prism visual identity, monogram, responsive layout, and reduced-mot
 - **Validation:** `scripts/audit-site-links.mjs` verifies referenced assets and HTML fragment targets, required metadata files, and sitemap completeness before GitHub Actions deploys.
 - **Privacy:** No geographic location, private channels, confidential work, or behavioral tracking is added. Source Knowledge content and curation manifests are unchanged.
 
+### Source-link and 404 correction
+
+- `/404.html` remains noindex and now omits an invalid `/404/` canonical route.
+- Relative Markdown links to not-yet-created upstream articles render as explicitly unavailable text in generated website copies, instead of broken routes.
+- This is a display-only safeguard. It does not create placeholder articles, alter approved categories, or write to Security-Education.

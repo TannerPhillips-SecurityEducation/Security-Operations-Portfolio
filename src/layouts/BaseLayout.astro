@@ -12,8 +12,9 @@ interface Props {
 const { title, description = "Tanner S. Phillips: Security Educator, Engineer & Researcher. Exploring security, learning, technology, philosophy, and creative systems.", robots = 'index, follow' } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
 const pageTitle = title === 'Home' ? 'TSP.yaml | Tanner S. Phillips' : title + ' | ' + identity.name;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const homepageURL = new URL(sitePath('/'), Astro.site).toString();
+const isNotFound = title === 'Page Not Found';
+const canonicalUrl = isNotFound ? homepageURL : new URL(Astro.url.pathname, Astro.site).toString();
 const structuredPerson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -45,7 +46,7 @@ const active = (path: string) => path === '/'
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
+    {!isNotFound && <link rel="canonical" href={canonicalUrl} />}
     <link rel="sitemap" type="application/xml" href={sitePath('/sitemap.xml')} />
     <link rel="icon" type="image/svg+xml" href={sitePath('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

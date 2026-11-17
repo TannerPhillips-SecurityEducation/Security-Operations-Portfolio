@@ -127,3 +127,9 @@ The public content, Obsidian Prism design, YAML identity source, knowledge prove
 - **Knowledge browsing:** Filter input reports the number of results and explains an empty result state.
 
 The `robots.txt` lives under the GitHub Pages project path. Crawlers follow domain-root robots rules; the sitemap is also explicitly linked from every page. No visitor analytics or trackers are introduced.
+
+### Source-link safety
+
+The knowledge build leaves missing upstream articles unpublished. If a source document links to a relative Markdown file that has not yet been created, the generated reader shows its label followed by **linked article not yet available** instead of a broken destination. The authoritative source document is never modified.
+
+The 404 page is marked `noindex` and does not advertise a nonexistent canonical `/404/` route.
