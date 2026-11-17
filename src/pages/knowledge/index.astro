@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import catalog from '../../data/generated/knowledge-catalog.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const docs = catalog.documents;
+const domains = [
+  { name: 'Foundations', key: 'foundations' },
+  { name: 'Network Knowledge', key: 'network' },
+  { name: 'Endpoint Knowledge', key: 'endpoint' },
+  { name: 'Application Knowledge', key: 'application' },
+  { name: 'Cloud Knowledge', key: 'cloud' },
+  { name: 'Industrial Knowledge', key: 'industrial' },
+  { name: 'IoT Knowledge', key: 'iot' },
+  { name: 'Identity Knowledge', key: 'identity' },
+].map(domain => ({
+  ...domain,
+  index: docs.find(doc => doc.file === domain.key + '/README.md'),
+  count: docs.filter(doc => doc.domain === domain.key).length,
+}));
+const urlFor = (doc: { slug: string }) => base + '/knowledge/read/' + doc.slug + '/';
+---
+<BaseLayout title="Knowledge">
+  <header class="page-heading">
+    <p class="eyebrow">Security Knowledge</p>
+    <h1>Knowledge</h1>
+    <p class="lead">A hierarchy for navigation, with document links for exploring relationships.</p>
+    <p class="body-copy">This library reads directly from my public Security-Education repository. It includes both substantive references and work-in-progress navigation structures, preserving each document's own development notes and review status.</p>
+  </header>
+  <section class="section" aria-labelledby="domains-title">
+    <h2 id="domains-title">Foundations & Knowledge Domains</h2>
+    <p class="body-copy">Within specialized domains, the approved primary navigation is Domain → Function → Implementation. Alternate indexes offer additional perspectives without creating duplicate canonical definitions.</p>
+    <div class="card-grid">
+      {domains.map(domain => (
+        <article class="card">
+          <h3><a href={domain.index ? urlFor(domain.index) : '#'}>{domain.name}</a></h3>
+          <p>{domain.count} Markdown documents, including navigation and working reference materials.</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section" aria-labelledby="explore-title">
+    <h2 id="explore-title">Discover the Library</h2>
+    <div class="resource-links">
+      <a class="primary-link" href={base + '/knowledge/browse/'}>Browse & Search Documents</a>
+      <a class="secondary-link" href={base + '/knowledge/graph/'}>Explore Document Links</a>
+      <a class="secondary-link" href={urlFor(docs.find(doc => doc.file === 'README.md'))}>Repository Overview</a>
+    </div>
+    <p class="body-copy">The interactive link explorer shows relationships through existing Markdown hyperlinks. It does not infer unapproved semantic predicates, ontological parentage, or peer-review status.</p>
+  </section>
+  <section class="section" aria-labelledby="source-title">
+    <h2 id="source-title">Source & Editorial Status</h2>
+    <p class="body-copy">All {catalog.count} source documents are built from the public GitHub repository at revision <code>{catalog.revision.slice(0, 12)}</code>. Some subject areas are still inventories or draft architecture rather than completed explanations. Existing technical reviews and their limitations remain visible in the source text.</p>
+    <p><a href={'https://github.com/' + catalog.source} target="_blank" rel="noopener noreferrer">Open the authoritative Security-Education repository</a></p>
+  </section>
+</BaseLayout>

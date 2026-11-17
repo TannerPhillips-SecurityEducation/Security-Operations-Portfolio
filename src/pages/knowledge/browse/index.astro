@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import catalog from '../../../data/generated/knowledge-catalog.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const docs = [...catalog.documents].sort((a, b) => {
+  const aKey = a.file === 'README.md' ? '0' : a.file;
+  const bKey = b.file === 'README.md' ? '0' : b.file;
+  return aKey.localeCompare(bKey);
+});
+const groupNames = {
+  repository: 'Repository Overview',
+  foundations: 'Foundations',
+  network: 'Network',
+  endpoint: 'Endpoint',
+  application: 'Application',
+  cloud: 'Cloud',
+  industrial: 'Industrial',
+  iot: 'IoT',
+  identity: 'Identity',
+};
+---
+<BaseLayout title="Knowledge Library">
+  <header class="page-heading">
+    <p><a href={base + '/knowledge/'}>Knowledge</a></p>
+    <h1>Browse & Search</h1>
+    <p class="lead">Explore the public Markdown documents, including domain indexes, foundational references, and working reviews.</p>
+  </header>
+
+  <section class="section" aria-labelledby="browse-heading">
+    <h2 id="browse-heading">Document Library</h2>
+    <div class="knowledge-filters">
+      <label for="knowledge-query">Search documents</label>
+      <input id="knowledge-query" type="search" placeholder="Search titles, paths, and document summaries" autocomplete="off" />
+      <label for="knowledge-domain">Knowledge domain</label>
+      <select id="knowledge-domain">
+        <option value="all">All</option>
+        {Object.entries(groupNames).map(([key, name]) => <option value={key}>{name}</option>)}
+      </select>
+      <p id="knowledge-match-count" aria-live="polite">{docs.length} documents</p>
+    </div>
+
+    <ul class="knowledge-list" id="knowledge-documents">
+      {docs.map(doc => (
+        <li data-domain={doc.domain} data-search={(doc.title + ' ' + doc.file + ' ' + doc.excerpt).toLowerCase()}>
+          <a href={base + '/knowledge/read/' + doc.slug + '/'}>{doc.title}</a>
+          <span class="knowledge-path">{doc.file}</span>
+          {doc.status && <span class="knowledge-status">{doc.status}</span>}
+        </li>
+      ))}
+    </ul>
+  </section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#knowledge-query');
+    const domain = document.querySelector<HTMLSelectElement>('#knowledge-domain');
+    const items = [...document.querySelectorAll<HTMLElement>('#knowledge-documents li')];
+    const count = document.querySelector<HTMLElement>('#knowledge-match-count');
+    function filterDocs() {
+      const q = search?.value.toLowerCase().trim() || '';
+      const selected = domain?.value || 'all';
+      let visible = 0;
+      for (const item of items) {
+        const show = (selected === 'all' || item.dataset.domain === selected) &&
+          (!q || (item.dataset.search || '').includes(q));
+        item.hidden = !show;
+        if (show) visible++;
+      }
+      if (count) count.textContent = visible + ' of ' + items.length + ' documents';
+    }
+    search?.addEventListener('input', filterDocs);
+    domain?.addEventListener('change', filterDocs);
+  </script>
+</BaseLayout>

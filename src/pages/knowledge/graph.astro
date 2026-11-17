@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import catalog from '../../data/generated/knowledge-catalog.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const docs = catalog.documents;
+---
+<BaseLayout title="Document Link Explorer">
+  <header class="page-heading">
+    <p><a href={base + '/knowledge/'}>Knowledge</a></p>
+    <h1>Document Link Explorer</h1>
+    <p class="lead">Explore connections that already exist as Markdown hyperlinks in the knowledge repository.</p>
+    <p class="body-copy">This is a <strong>document-link graph</strong>, not a ratified semantic knowledge graph. Lines represent hyperlinks between real source files. Folder placement and hyperlinks do not, by themselves, assert a typed conceptual relationship.</p>
+  </header>
+
+  <section class="section" aria-labelledby="graph-heading">
+    <h2 id="graph-heading">Explore a Document</h2>
+    <div class="knowledge-filters">
+      <label for="graph-document">Choose a document</label>
+      <select id="graph-document">
+        {docs.map(doc => <option value={doc.file} selected={doc.file === 'foundations/fundamentals/README.md'}>{doc.title} · {doc.file}</option>)}
+      </select>
+      <p id="graph-note" aria-live="polite">Choose a document to see its linked neighbors.</p>
+    </div>
+    <div class="knowledge-graph-view" role="group" aria-label="Linked document visualization">
+      <svg id="knowledge-graph" viewBox="0 0 960 560" role="img" aria-label="Selected document surrounded by its incoming and outgoing Markdown links"></svg>
+    </div>
+    <h3>Document Links</h3>
+    <ul class="knowledge-link-list" id="graph-link-list"></ul>
+    <noscript><p>Enable JavaScript to interact with the graph. The full <a href={base + '/knowledge/browse/'}>document browser</a> is available without it.</p></noscript>
+  </section>
+  <script>
+    import catalog from '../../data/generated/knowledge-catalog.json';
+    const docs = catalog.documents;
+    const byFile = new Map(docs.map(d => [d.file, d]));
+    const select = document.querySelector<HTMLSelectElement>('#graph-document');
+    const svg = document.querySelector<SVGSVGElement>('#knowledge-graph');
+    const note = document.querySelector<HTMLElement>('#graph-note');
+    const listing = document.querySelector<HTMLElement>('#graph-link-list');
+    const namespace = 'http://www.w3.org/2000/svg';
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const maxNeighbors = 18;
+    const label = (name: string) => name.length > 23 ? name.slice(0, 21) + '…' : name;
+    function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string,string> = {}) {
+      const node = document.createElementNS(namespace, tag);
+      for (const [name, value] of Object.entries(attrs)) node.setAttribute(name, value);
+      return node;
+    }
+    function svgLabel(x: number, y: number, title: string, className: string) {
+      const t = el('text', { x: String(x), y: String(y), 'text-anchor':'middle', class:className });
+      t.textContent = label(title);
+      return t;
+    }
+    function renderGraph(file: string) {
+      const focus = byFile.get(file);
+      if (!focus || !svg || !note || !listing) return;
+      svg.replaceChildren();
+      listing.replaceChildren();
+      const outgoing = new Set(focus.links.filter(x => x !== focus.file && byFile.has(x)));
+      const incoming = new Set(docs.filter(d => d.file !== focus.file && d.links.includes(focus.file)).map(d => d.file));
+      const all = [...new Set([...outgoing, ...incoming])].sort((a,b) => (byFile.get(a)?.title || '').localeCompare(byFile.get(b)?.title || ''));
+      const shown = all.slice(0,maxNeighbors);
+      note.textContent = focus.title + ': ' + outgoing.size + ' outgoing links, ' + incoming.size + ' incoming links. ' + shown.length + ' of ' + all.length + ' unique neighboring documents visualized.';
+      const cx=480,cy=275,rx=335,ry=197;
+      const ring = shown.map((f,i) => ({
+        file:f,
+        doc:byFile.get(f),
+        x:cx+Math.cos((2*Math.PI*i)/shown.length-Math.PI/2)*rx,
+        y:cy+Math.sin((2*Math.PI*i)/shown.length-Math.PI/2)*ry,
+      }));
+      for (const node of ring) {
+        svg.appendChild(el('line', { x1:String(cx),y1:String(cy),x2:String(node.x),y2:String(node.y),class:outgoing.has(node.file)?'graph-edge-out':'graph-edge-in' }));
+      }
+      const center = el('a', { href:base+'/knowledge/read/'+focus.slug+'/', 'aria-label':'Read '+focus.title });
+      center.appendChild(el('circle', { cx:String(cx),cy:String(cy),r:'48',class:'graph-focus' }));
+      center.appendChild(svgLabel(cx,cy-4,focus.title,'graph-text-focus'));
+      center.appendChild(svgLabel(cx,cy+17,'selected','graph-text-note'));
+      svg.appendChild(center);
+      for(const node of ring) {
+        if(!node.doc)continue;
+        const a=el('a',{href:base+'/knowledge/read/'+node.doc.slug+'/', 'aria-label':'Read '+node.doc.title});
+        a.appendChild(el('circle', {cx:String(node.x),cy:String(node.y),r:'30',class:'graph-node'}));
+        a.appendChild(svgLabel(node.x,node.y-43,node.doc.title,'graph-text-label'));
+        const type = outgoing.has(node.file) && incoming.has(node.file) ? 'linked both ways' : outgoing.has(node.file) ? 'linked from selected' : 'links to selected';
+        const tt=el('title');tt.textContent=node.doc.title+' ('+type+')';a.appendChild(tt);svg.appendChild(a);
+      }
+      for(const file of all) {
+        const target=byFile.get(file);
+        if(!target)continue;
+        const li=document.createElement('li');
+        const a=document.createElement('a');
+        a.href=base+'/knowledge/read/'+target.slug+'/';a.textContent=target.title;
+        const span=document.createElement('span');
+        span.textContent=' · '+(outgoing.has(file)&&incoming.has(file)?'both directions':outgoing.has(file)?'outgoing link':'incoming link');
+        li.append(a,span);listing.appendChild(li);
+      }
+      if(all.length===0){
+        const t=svgLabel(cx,405,'No linked documents found in this selection.','graph-text-label');
+        svg.appendChild(t);
+      }
+    }
+    const url=new URL(location.href);
+    const preset=url.searchParams.get('document');
+    if(select && preset && byFile.has(preset))select.value=preset;
+    select?.addEventListener('change',()=>{renderGraph(select.value);const u=new URL(location.href);u.searchParams.set('document',select.value);history.replaceState(null,'',u)});
+    renderGraph(select?.value || 'README.md');
+  </script>
+</BaseLayout>

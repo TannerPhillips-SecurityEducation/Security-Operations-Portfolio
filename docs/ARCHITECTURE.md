@@ -40,3 +40,18 @@ Home · About · Projects · Knowledge · Publications · Education · Contact
 ## Sources
 Website: TannerPhillips-SecurityEducation/Security-Operations-Portfolio
 Knowledge: TannerPhillips-SecurityEducation/Security-Education
+
+## Knowledge integration (v0.6)
+
+- `/knowledge/`: Foundations plus seven specialized domains, using the upstream repo's approved function-first taxonomy.
+- `/knowledge/browse/`: All Markdown documents browsable and searchable by title, path, and summary, with domain filtering.
+- `/knowledge/read/[...slug]/`: Native Astro content rendering of the upstream Markdown, including source status and revision links.
+- `/knowledge/graph/`: Interactive *document-link explorer* for explicit Markdown hyperlinks. This is not a formal semantic graph or an ontology.
+- Source repository: `TannerPhillips-SecurityEducation/Security-Education` (public).
+- Build-time synchronizer: `scripts/sync-knowledge.mjs`. The website clones the source at build time and imports generated Markdown.
+- The source's original Markdown is never changed. Its relative links are rewritten only in the generated website copies.
+- Source revision is displayed with every reference. GitHub Actions rebuilds on pushes to the portfolio, manually, and on a daily schedule.
+- Knowledge Checks and Practical Assessments do not belong in the upstream technical knowledge repository.
+- Documents include working architectural material and unreviewed subjects; no independent acceptance or final publication status is implied.
+- **Semantic graph metadata/predicates remain unapproved in the source repository.** No such categories are invented in the website.
+- Final visual theme, TSP monogram, and interactive `TSP.yaml` homepage are still deliberately deferred.

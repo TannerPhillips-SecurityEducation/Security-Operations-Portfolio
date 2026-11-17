@@ -75,3 +75,43 @@ h3 { font-size: 1.15rem; }
 .education-method p { margin: 0; color: var(--muted); }
 .method-number { color: var(--accent); font-size: .85rem; font-weight: 750; min-width: 2rem; padding-top: .12rem; font-variant-numeric: tabular-nums; }
 .education-section-description { max-width: 70ch; }
+
+/* Functional knowledge library scaffolding; final Obsidian Prism theme deferred. */
+.knowledge-filters { display: grid; gap: .65rem; max-width: 44rem; margin: 1.1rem 0 2rem; }
+.knowledge-filters input, .knowledge-filters select { width: 100%; padding: .7rem; background: var(--surface); color: inherit; border: 1px solid var(--border); border-radius: .4rem; font: inherit; }
+.knowledge-filters label { font-weight: 650; }
+.knowledge-filters p { color: var(--muted); font-size: .9rem; }
+.knowledge-list { list-style: none; padding: 0; display: grid; gap: .6rem; }
+.knowledge-list li { padding: .85rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: .35rem; }
+.knowledge-list li[hidden] { display: none; }
+.knowledge-list a { font-weight: 650; }
+.knowledge-path, .knowledge-status, .knowledge-source { display: block; font-size: .82rem; color: var(--muted); overflow-wrap: anywhere; }
+.knowledge-breadcrumbs { padding-top: 2rem; display: flex; gap: .65rem; flex-wrap: wrap; font-size: .87rem; }
+.knowledge-document-heading { padding-top: 2rem; }
+.knowledge-document-heading h1 { font-size: clamp(2rem, 4.5vw, 3.4rem); }
+.knowledge-reader { display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem); align-items: start; gap: 2.5rem; }
+.knowledge-prose { min-width: 0; max-width: 75ch; padding-bottom: 3rem; overflow-wrap: anywhere; }
+.knowledge-prose h1 { font-size: 2rem; }
+.knowledge-prose h2 { margin-top: 2.5rem; }
+.knowledge-prose h3 { margin-top: 1.7rem; }
+.knowledge-prose p, .knowledge-prose li { margin-bottom: .75rem; }
+.knowledge-prose pre { max-width: 100%; overflow-x: auto; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: .4rem; font-size: .83rem; }
+.knowledge-prose :not(pre) > code { background: var(--surface); padding: .1rem .28rem; border-radius: .25rem; font-size: .88em; }
+.knowledge-prose table { display: block; overflow-x: auto; border-collapse: collapse; width: 100%; font-size: .91rem; margin: 1.2rem 0; }
+.knowledge-prose td, .knowledge-prose th { border: 1px solid var(--border); padding: .55rem .65rem; text-align: left; min-width: 7rem; vertical-align: top; }
+.knowledge-prose blockquote { padding-left: 1rem; margin-left: 0; border-left: 3px solid var(--accent); }
+.knowledge-related { padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: .5rem; }
+.knowledge-related h2 { font-size: 1.1rem; }
+.knowledge-related p, .knowledge-related li { font-size: .86rem; color: var(--muted); }
+.knowledge-related ul { padding-left: 1rem; }
+.knowledge-graph-view { border: 1px solid var(--border); background: var(--surface); border-radius: .5rem; overflow: hidden; }
+#knowledge-graph { width: 100%; min-height: 310px; height: auto; }
+.graph-edge-out { stroke: var(--accent); stroke-width: 1.5; opacity: .6; }
+.graph-edge-in { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; opacity: .6; }
+.graph-focus { fill: var(--accent); opacity: .8; stroke: currentColor; stroke-width: 1; }
+.graph-node { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.graph-text-focus { fill: var(--accent-contrast); font-size: 13px; font-weight: 700; }
+.graph-text-note { fill: var(--accent-contrast); font-size: 12px; }
+.graph-text-label { fill: currentColor; font-size: 13px; }
+.knowledge-link-list { line-height: 1.85; }
+@media (max-width: 840px) { .knowledge-reader { grid-template-columns: 1fr; } }

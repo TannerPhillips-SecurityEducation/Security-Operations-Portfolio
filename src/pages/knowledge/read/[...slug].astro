@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import catalog from '../../../data/generated/knowledge-catalog.json';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('knowledge');
+  return entries.map(entry => {
+    const doc = catalog.documents.find(item => item.id === entry.id);
+    if (!doc) throw new Error('Missing knowledge catalog item for ' + entry.id);
+    return { params: { slug: doc.slug }, props: { entry, doc } };
+  });
+}
+const { entry, doc } = Astro.props;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const root = base + '/knowledge/';
+const parentFolder = doc.file.includes('/') ? doc.file.split('/').slice(0, -1) : [];
+const pathParts = parentFolder.length ? parentFolder.slice(0, -1) : [];
+const crumbs = pathParts.map((part, i) => {
+  const file = pathParts.slice(0, i + 1).join('/') + '/README.md';
+  const match = catalog.documents.find(item => item.file === file);
+  return match ? { title: match.title, href: base + '/knowledge/read/' + match.slug + '/' } : null;
+}).filter(Boolean);
+const links = doc.links
+  .map(file => catalog.documents.find(item => item.file === file))
+  .filter(Boolean).slice(0, 24);
+---
+<BaseLayout title={doc.title}>
+  <nav aria-label="Knowledge breadcrumbs" class="knowledge-breadcrumbs">
+    <a href={root}>Knowledge</a>
+    {crumbs.map(item => <><span aria-hidden="true">/</span><a href={item.href}>{item.title}</a></>)}
+  </nav>
+  <header class="page-heading knowledge-document-heading">
+    <p class="eyebrow">Knowledge Document</p>
+    <h1>{doc.title}</h1>
+    <p class="knowledge-path">{doc.file}</p>
+    {doc.status && <p class="knowledge-status"><strong>Source status:</strong> {doc.status}</p>}
+    <p class="knowledge-source">Source revision: <code>{catalog.revision.slice(0, 12)}</code> · <a href={doc.sourceUrl} rel="noopener noreferrer" target="_blank">Read the original Markdown on GitHub</a></p>
+  </header>
+  <div class="knowledge-reader">
+    <article class="body-copy knowledge-prose">
+      <Content />
+    </article>
+    {links.length > 0 && (
+      <aside class="knowledge-related" aria-label="Linked knowledge documents">
+        <h2>Linked Documents</h2>
+        <p>These are source Markdown links, not formally typed semantic relationships.</p>
+        <ul>
+          {links.map(link => <li><a href={base + '/knowledge/read/' + link.slug + '/'}>{link.title}</a></li>)}
+        </ul>
+        {doc.links.length > links.length && <p>Additional links appear in the full document.</p>}
+      </aside>
+    )}
+  </div>
+  <div class="resource-links">
+    <a class="secondary-link" href={base + '/knowledge/browse/'}>Browse the Library</a>
+    <a class="secondary-link" href={base + '/knowledge/graph/?document=' + encodeURIComponent(doc.file)}>Explore Links</a>
+  </div>
+</BaseLayout>

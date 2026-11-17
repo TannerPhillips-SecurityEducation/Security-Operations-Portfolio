@@ -29,3 +29,19 @@ npm run build
 
 ## Publishing
 GitHub Actions builds and deploys to GitHub Pages. See `docs/ARCHITECTURE.md` for the content and design boundaries.
+
+## Knowledge integration
+
+The [Knowledge section](src/pages/knowledge/index.astro) is a native reading library built from the public `Security-Education` repository. The original repository remains the only editing source. The build pipeline:
+
+1. Clones the public source repository at the beginning of each website build.
+2. Copies Markdown into a generated, gitignored content collection.
+3. Rewrites existing relative Markdown links to native website reader links.
+4. Generates a source-revision catalog and a document-link graph from explicit hyperlinks.
+5. Builds static pages on GitHub Pages.
+
+Run `npm run sync:knowledge` to refresh the generated copy locally. `npm run dev` and `npm run build` also perform a refresh automatically. Local development requires access to the public GitHub repository.
+
+The website workflow also performs a scheduled rebuild each day, although GitHub's scheduling service may delay a run. No knowledge source content is edited, and document links are not interpreted as formally approved semantic relation types.
+
+**Publication status:** Many knowledge documents are working drafts, inventories, or architectural registers, not completed peer-reviewed references.
