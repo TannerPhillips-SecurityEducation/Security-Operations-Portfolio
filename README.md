@@ -20,7 +20,7 @@ This portfolio showcases professional focus, developing projects, research, and 
 These are **ongoing areas of work**, not assertions that public releases or validated implementations are already available.
 
 - **Network Security Operations:** Foundations, system models, architecture, and educational resources.
-- **Hide & Zeek:** A Zeek-focused learning and development environment covering Learn, Architect, Engineer, Develop, and Analyze.
+- **Zeek LDE (Zeek Learning & Development Environment):** A Zeek-focused learning and development environment covering Learn, Architect, Engineer, Develop, and Analyze.
 - **Foundations of Network Threat Hunting:** Methodology and analytical models for network-oriented investigation.
 - **Practical Technical Education:** Hands-on learning, labs, references, and assessment frameworks.
 
@@ -37,3 +37,11 @@ Additional project repositories, publications, demonstrations, and validated res
 ---
 
 *Maintained as a living professional portfolio. Views and examples in this repository are personal unless explicitly stated otherwise.*
+
+## Website
+
+The approved [personal website architecture](docs/ARCHITECTURE.md) is implemented as an Astro static site. Node.js 24 is recommended. Run npm install, then npm run dev for local development or npm run build to generate static output.
+
+To publish using GitHub Pages, open repository Settings > Pages and set the publishing source to GitHub Actions. The expected URL after successful deployment is https://tannerphillips-securityeducation.github.io/Security-Operations-Portfolio/.
+
+Visual identity and additional public profile/contact links remain to be decided together.
