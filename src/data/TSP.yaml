@@ -5,10 +5,14 @@ identity:
   monogram: TSP
   headline: Security Educator, Engineer & Researcher
   introduction: >-
-    I'm Tanner. I'm driven by curiosity and a desire to understand how things work.
-    I enjoy questioning assumptions, exploring possibilities, learning new things,
-    and turning ideas into something tangible. My interests span philosophy,
-    technology, engineering, education, and creative experimentation.
+    I'm Tanner. I enjoy getting beneath the surface of complicated things.
+    Sometimes that's a network conversation hidden inside a packet capture;
+    sometimes it's a philosophical question, a small software experiment,
+    or an idea for a world that doesn't exist yet. I like to understand the
+    structure behind what I'm seeing, test my assumptions, and turn what I
+    discover into something useful. My work spans security and education,
+    but my curiosity extends into engineering, writing, computing, and
+    creative exploration.
 approach:
   - Thinker
   - Learner
@@ -26,6 +30,19 @@ philosophy:
   - Reasoning & Reflection
   - Freedom & Autonomy
   - Ethics & Responsibility
+perspective:
+  on_understanding: >-
+    I want to distinguish what I observe, what I can derive from it,
+    and what I infer might be true. A useful explanation should
+    survive closer examination, even when the evidence is incomplete.
+  on_learning: >-
+    I learn by exploring concepts, testing ideas, making things,
+    and reflecting on what changes when an assumption turns out to
+    be wrong. I value the freedom to ask questions and make mistakes.
+  on_creating: >-
+    Whether I'm developing a technical lab, a written reference,
+    or a personal experiment, I want the result to reveal more
+    about how the underlying system works.
 journey:
   - year: "2014"
     milestone: Graduated from high school and joined the U.S. Navy

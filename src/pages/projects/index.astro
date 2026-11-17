@@ -3,14 +3,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../data/showcase';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Projects">
+<BaseLayout title="Projects" description="A selectively published portfolio of tangible projects, including the decisions, engineering, and evidence behind each one.">
   <header class="page-heading">
-    <p class="eyebrow">Selected Work</p>
+    <p class="eyebrow">SELECTED WORK</p>
     <h1>Projects</h1>
-    <p class="lead">I use this space for work I've deliberately chosen to showcase because there is a meaningful result that can be examined.</p>
+    <p class="lead">I enjoy following an idea far enough that it becomes something I can build, test, change, and understand more deeply.</p>
   </header>
-  <section class="section" aria-labelledby="curated-projects-heading">
-    <h2 id="curated-projects-heading">Curated Projects</h2>
+  <section class="section" aria-labelledby="making-work">
+    <div class="body-copy narrative-copy">
+      <h2 id="making-work">Building is part of how I learn.</h2>
+      <p>My interests often begin with a question about what a system could do. Sometimes that leads to a home-lab experiment or a software prototype. Other times it becomes an educational tool, a model, a technical reference, or a way of exploring an unfamiliar platform. The common thread is that making something forces an idea to become specific enough to test.</p>
+      <p>I don't consider every experiment a completed project, and I don't want this space to be an automatically generated inventory of repositories. For a project to appear here, there should be something tangible to examine and a story worth telling about how it came together.</p>
+      <p>When I share a project, I want visitors to understand more than its name and technology stack. I want to explain the problem, the constraints, the choices I made, what I was able to demonstrate, and what I learned from the outcome. A project can still be evolving, but the specific result I present should exist and be inspectable.</p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="selected-projects-heading">
+    <div class="section-intro">
+      <div><p class="eyebrow">EVIDENCE BEFORE PRESENTATION</p><h2 id="selected-projects-heading">Work selected for public exploration.</h2></div>
+      <p>Each featured entry includes a demonstrable result and a path into the technical decisions behind it.</p>
+    </div>
     {projects.length > 0 ? (
       <div class="card-grid">
         {projects.map(project => (
@@ -18,20 +29,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <p class="status">{project.status === 'completed' ? 'Completed' : 'Demonstrable'} · {project.category}</p>
             <h3><a href={base + '/projects/' + project.slug + '/'}>{project.title}</a></h3>
             <p>{project.summary}</p>
-            <a class="text-link" href={base + '/projects/' + project.slug + '/'}>Explore the case study</a>
+            <a class="text-link" href={base + '/projects/' + project.slug + '/'}>Explore the project story ↗</a>
           </article>
         ))}
       </div>
     ) : (
       <div class="curation-empty" role="status">
-        <h3>No projects selected for the showcase yet</h3>
-        <p>My project gallery is intentionally curated. Projects are added only after I choose to present them and have a tangible, publicly inspectable result to share.</p>
+        <h3>I'm choosing what belongs here.</h3>
+        <p>This gallery is intentionally selective. I haven't published a project case study in it yet. In the meantime, my <a href={base + '/knowledge/'}>Security Knowledge library</a> is a working public system that can be explored directly, and my <a href={base + '/about/interests/'}>personal interests</a> explain the kinds of things I'm drawn to building.</p>
       </div>
     )}
   </section>
-  <section class="section" aria-labelledby="project-approach-heading">
-    <h2 id="project-approach-heading">How I Present My Work</h2>
-    <p class="body-copy">Each selected project starts with a readable overview. For those who want to explore further, individual case studies can expand into its design, implementation, decisions, and evidence. An idea or unfinished concept is not represented as a completed project.</p>
-    <p><a href={base + '/about/capabilities/'}>Explore my technical capabilities</a></p>
+  <section class="section">
+    <div class="narrative-panel">
+      <h2>What I want a project page to answer</h2>
+      <p>A good project story should leave someone with a clear picture of what was built, why those choices made sense, and what evidence supports the result. I want the architecture, experiments, tradeoffs, and limitations to be just as discoverable as the finished interface.</p>
+      <p>That's why I use progressive case studies: a short overview for somebody browsing, followed by deeper sections for somebody interested in the engineering.</p>
+      <a class="text-link" href={base + '/about/capabilities/'}>Read about my technical practices ↗</a>
+    </div>
   </section>
 </BaseLayout>

@@ -2,28 +2,42 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { contactChannels } from '../../data/site';
 ---
-<BaseLayout title="Contact">
+<BaseLayout title="Contact" description="Connect with Tanner S. Phillips through his public LinkedIn and GitHub profiles.">
   <header class="page-heading">
-    <p class="eyebrow">Connect</p>
+    <p class="eyebrow">CONNECT</p>
     <h1>Contact</h1>
-    <p class="lead">I'm interested in thoughtful conversations about cybersecurity, technical education, engineering, ideas, and making things.</p>
-    <p class="body-copy">You can find me through my public professional profiles below. I keep my contact information limited to these channels.</p>
+    <p class="lead">The best conversations often begin with a question, a half-formed idea, or a problem that somebody wants to understand better.</p>
   </header>
+  <section class="section" aria-labelledby="connect-intro">
+    <div class="body-copy narrative-copy">
+      <h2 id="connect-intro">I enjoy thoughtful exchanges.</h2>
+      <p>I'm interested in conversations about network security, technical education, systems engineering, philosophy, learning, and the unusual things people are creating with technology. I enjoy exchanging ideas with people who are willing to examine assumptions and talk through the details rather than settle for a polished surface answer.</p>
+      <p>For professional connections and conversations, LinkedIn is the clearest place to find me. If you're interested in technical documents, source code, or the systems I'm making publicly available, GitHub is where I keep that work organized.</p>
+      <p>I use those two public profiles as my contact points here. You won't find a form asking for your information or a personal address published on this site.</p>
+    </div>
+  </section>
   <section class="section" aria-labelledby="channels-heading">
-    <h2 id="channels-heading">Connect with Me</h2>
+    <h2 id="channels-heading">Where to find me</h2>
     <div class="card-grid">
-      {contactChannels.map((channel) => (
+      {contactChannels.map(channel => (
         <article class="card">
+          <p class="eyebrow">PUBLIC PROFILE</p>
           <h3>{channel.label}</h3>
           <p>{channel.description}</p>
           <p class="knowledge-path">{channel.detail}</p>
           <div class="resource-links">
             <a class="secondary-link" href={channel.url} target="_blank" rel="noopener noreferrer" aria-label={'Visit my ' + channel.label + ' profile (opens in a new tab)'}>
-              Visit {channel.label}
+              Visit {channel.label} ↗
             </a>
           </div>
         </article>
       ))}
+    </div>
+  </section>
+  <section class="section">
+    <div class="narrative-panel">
+      <h2>Questions and ideas are welcome.</h2>
+      <p>You don't need a fully developed proposal to start a thoughtful conversation. I appreciate clarity, candor, and a willingness to explore what is known, what remains uncertain, and what might be worth trying next.</p>
     </div>
   </section>
 </BaseLayout>

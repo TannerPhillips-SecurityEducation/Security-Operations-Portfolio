@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.9, Obsidian Prism visual identity and TSP.yaml (2026-11-17).
+**Version:** v0.10, long-form editorial narrative revision (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -94,3 +94,23 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - Motion is user-controlled, disabled by default, and disabled when the operating system requests reduced motion. Content and navigation do not depend on animation or JavaScript.
 - The Knowledge, Projects, Publications, Education, About, and Contact sections retain the existing structure and editorial content.
 - No private personal information or unsupported project/publication releases were introduced.
+
+## Narrative editorial pass (v0.10)
+
+**Purpose:** The website should communicate a person, their ideas, experiences, and work, not read as a resume checklist or taxonomy inventory.
+
+- About landing: first-person contextual introduction preceding the navigational cards.
+- My Journey: chronological milestones remain approved; summaries are visible and deeper reflection is optional.
+- Professional Experience: Navy, Elastic, and Corelight presented as first-person career chapters; historical five-day learning sequence and seven functions per mode remain available in disclosures.
+- Technical Capabilities: practice-oriented domain narratives with explicit connection to professional evidence and careful distinction between private practice, personal experiments, and public deliverables.
+- Credentials: previously held status unchanged; greater explanation of the role of credentials in professional learning.
+- Interests and Philosophy: approved statements retained and expanded with examples connecting systems, reasoning, education, and creative exploration.
+- Education: explanation precedes classification; learning outcomes, learning purposes, methods, and assessment roots remain distinct.
+- Knowledge: human-readable rationale, domain descriptions, canonical/source boundaries, and publication status. **Upstream Security-Education content was not modified.**
+- Projects and Publications: more purposeful first-person context, preserving the explicit approval gates and initially empty galleries.
+- Contact: narrative introduction plus the same two approved public channels.
+- Home: `TSP.yaml` remains a valid, canonical source. A new `perspective` section adds first-person context without weakening the machine-readable contract. The homepage transitions from YAML to narrative and then navigation.
+
+**Editorial contract:** Keep text concrete, evidence-conscious, first-person, and humane. Do not make unsupported technical/professional claims. Do not present personal experiments as public production releases. Preserve privacy restrictions, reduce uninformative repetition, and prefer visible explanatory prose to collapsed lists. See `docs/EDITORIAL.md`.
+
+The Obsidian Prism visual identity, monogram, responsive layout, and reduced-motion controls are preserved.

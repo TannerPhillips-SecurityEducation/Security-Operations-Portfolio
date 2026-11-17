@@ -3,30 +3,60 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { capabilities } from '../../data/about';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Technical Capabilities">
+<BaseLayout title="Technical Capabilities" description="How my professional practices connect to the technologies, evidence, and learning experiences behind them.">
   <header class="page-heading">
     <p><a href={base + '/about/'}>About</a></p>
     <h1>Technical Capabilities</h1>
-    <p class="lead">Five domains organized by practice and connected to supporting experience rather than self-assigned proficiency scores.</p>
+    <p class="lead">I find it more useful to explain what I have done, how I approach a problem, and what evidence supports that experience than to assign myself a number on an expertise scale.</p>
   </header>
-  <section class="section" aria-labelledby="domains-title">
-    <h2 id="domains-title">Capabilities</h2>
-    <div class="experience-list">
-      {capabilities.map((domain) => (
-        <details>
-          <summary><strong>{domain.name}</strong></summary>
-          <div class="body-copy">
-            <p>{domain.description}</p>
-            <h3>Practices</h3>
-            <ul>{domain.practices.map((item) => <li>{item}</li>)}</ul>
-            <h3>Technologies & Methods</h3>
-            <ul>{domain.methods.map((item) => <li>{item}</li>)}</ul>
-            <h3>Supporting Experience</h3>
-            <p>{domain.evidence}</p>
+  <section class="section" aria-labelledby="capability-approach">
+    <div class="body-copy narrative-copy">
+      <h2 id="capability-approach">Capabilities live in context.</h2>
+      <p>A technology is not a capability by itself. Knowing the name of a tool tells you very little about the questions somebody can answer with it. For that reason, I organize my capabilities around practices, then connect them to the tools, methods, and experiences that give those practices meaning.</p>
+      <p>Some of the areas below are grounded in professional work. Others include active personal exploration. I distinguish the two because learning something, teaching something, engineering something, and releasing something publicly are related activities, but they are not interchangeable claims.</p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="capability-domains">
+    <div class="section-intro">
+      <div>
+        <p class="eyebrow">CONNECTED PRACTICES</p>
+        <h2 id="capability-domains">Five areas, many intersections.</h2>
+      </div>
+      <p>Each domain begins with the way I think about the work. Technologies and supporting experience follow, rather than standing in for the work itself.</p>
+    </div>
+    <div class="capability-stories">
+      {capabilities.map((domain, i) => (
+        <article class="capability-story">
+          <div class="capability-story-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <h3>{domain.name}</h3>
+            <div class="body-copy narrative-copy">
+              <p>{domain.description}</p>
+              <p>{domain.perspective}</p>
+              <p><strong>Where this comes from:</strong> {domain.example}</p>
+              <details class="narrative-detail">
+                <summary>Practices, technologies, and supporting evidence</summary>
+                <div class="body-copy">
+                  <p><strong>Practices:</strong> {domain.practices.join(' · ')}.</p>
+                  <p><strong>Technologies and methods:</strong> {domain.methods.join(' · ')}.</p>
+                  <p><strong>Evidence:</strong> {domain.evidence}</p>
+                  <p>{domain.scope}</p>
+                </div>
+              </details>
+            </div>
           </div>
-        </details>
+        </article>
       ))}
     </div>
-    <p><a href={base + '/about/experience/'}>Professional experience</a> · <a href={base + '/about/interests/'}>Personal interests</a></p>
+  </section>
+  <section class="section">
+    <div class="narrative-panel">
+      <h2>What these areas have in common</h2>
+      <p>I like to understand the structures and assumptions beneath a system, then see what becomes possible when that understanding is put to work. In security, that may mean investigating network evidence. In education, it may mean turning difficult concepts into a sequence someone else can learn. In personal computing, it may mean building an experiment just to find out whether an idea is sound.</p>
+      <div class="resource-links">
+        <a class="secondary-link" href={base + '/about/experience/'}>Professional experience</a>
+        <a class="secondary-link" href={base + '/about/interests/'}>Personal interests</a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

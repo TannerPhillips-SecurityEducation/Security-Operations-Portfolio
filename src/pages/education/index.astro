@@ -2,76 +2,104 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { education, creation } from '../../data/about';
 import { learningOutcomes, developmentPurposes, teachingMethods, assessmentRoots } from '../../data/education';
-
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Education">
+<BaseLayout title="Education" description="My approach to technical education: curiosity, a foundation of understanding, hands-on learning, and the freedom to ask questions and make mistakes.">
   <header class="page-heading">
-    <p class="eyebrow">Education & Learning</p>
+    <p class="eyebrow">EDUCATION & LEARNING</p>
     <h1>Education</h1>
-    <p class="lead">I approach technical education as the development of understanding, practical capability, and confidence.</p>
+    <p class="lead">To teach something well, I have to do more than explain how it works. I have to help someone develop the understanding and confidence to work with it when I'm no longer there.</p>
   </header>
 
-  <section class="section" aria-labelledby="principle-heading">
-    <h2 id="principle-heading">My Teaching Principle</h2>
-    <blockquote class="education-quote">
-      <p>To Learn One Must Be Able To Ask Questions And Make Mistakes</p>
-    </blockquote>
-    <div class="body-copy">
-      <p>I want learners to be able to question an explanation, test an idea, recognize uncertainty, and try again when something doesn't work. Making room for mistakes is not the same as requiring them. It means treating experimentation and error as normal parts of the learning process.</p>
-      <p>I see my role as helping people move beyond following instructions toward understanding why something works and what to do when the example no longer fits.</p>
+  <section class="section" aria-labelledby="teaching-principle">
+    <div class="editorial-layout">
+      <div class="editorial-rail"><p class="eyebrow">MY TEACHING PRINCIPLE</p><span class="editorial-rule" aria-hidden="true"></span></div>
+      <div class="body-copy narrative-copy">
+        <h2 id="teaching-principle">Learning requires room to explore.</h2>
+        <blockquote class="education-quote"><p>To Learn One Must Be Able To Ask Questions And Make Mistakes</p></blockquote>
+        <p>That sentence captures something fundamental about how I approach instruction. A classroom should be a place where someone can admit that a concept doesn't make sense yet, challenge an explanation, or try an approach that turns out to be wrong. Those moments are not interruptions to learning. They're often where the most important learning begins.</p>
+        <p>I don't mean that a learner must make mistakes to succeed. I mean that the possibility of making one shouldn't prevent them from participating. If someone is afraid to ask a question, an important gap in understanding can remain hidden. If someone is only rewarded for following the prepared steps, they may never develop the judgment to handle a situation that doesn't match the example.</p>
+        <p>My responsibility is to provide structure without making the process rigid: explain the concept, demonstrate it in a real technical context, support practice, and give learners room to reason through the unexpected.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="understanding-to-action">
+    <h2 id="understanding-to-action">From recognizing information to using it.</h2>
+    <div class="body-copy narrative-copy">
+      <p>Cybersecurity offers plenty of ways to memorize terminology without really understanding what is happening. Someone may know the name of a protocol, a log, or a detection rule and still struggle to explain what an observation actually demonstrates.</p>
+      <p>I try to build learning from those underlying distinctions. What did a tool observe? How was that observation represented? What additional context would change an interpretation? And when the evidence is incomplete, what can reasonably be concluded?</p>
+      <p>A historical five-day learning experience I taught at Elastic illustrates this progression. Learners began with network packets using Wireshark and tcpdump, examined intrusion detection with Suricata, worked with Zeek and Linux log analytics, and learned to search in Elastic. The final guided hunt brought Suricata and Zeek data together using CTFd and Kibana. The important part wasn't that five tools appeared on a schedule. It was that each offered another piece of the analytical picture.</p>
+      <p>By the end of that kind of experience, I want a learner to be doing more than reproducing a demonstration. I want them to recognize why an investigation needs multiple views of the evidence, how a search or observation supports a hypothesis, and what to do next when the answer isn't obvious.</p>
     </div>
   </section>
 
   <section class="section" aria-labelledby="outcomes-heading">
-    <h2 id="outcomes-heading">What I Want Learning to Produce</h2>
+    <div class="section-intro">
+      <div><p class="eyebrow">WHAT LEARNING SHOULD CHANGE</p><h2 id="outcomes-heading">Understanding. Capability. Confidence.</h2></div>
+      <p>I look for three kinds of growth, not simply whether someone can repeat what was on a slide.</p>
+    </div>
     <div class="card-grid">
-      {learningOutcomes.map((outcome) => (
+      {learningOutcomes.map(outcome => (
         <article class="card">
           <h3>{outcome.name}</h3>
           <p>{outcome.description}</p>
         </article>
       ))}
     </div>
-  </section>
-
-  <section class="section" aria-labelledby="purpose-heading">
-    <h2 id="purpose-heading">Three Development Purposes</h2>
-    <p class="body-copy">I distinguish the purpose of a learning experience from the way it is taught or assessed. A learning activity may pursue more than one purpose.</p>
-    <div class="card-grid">
-      {developmentPurposes.map((purpose) => (
-        <article class="card">
-          <h3>{purpose.name}</h3>
-          <p>{purpose.description}</p>
-        </article>
-      ))}
+    <div class="body-copy narrative-copy prose-after-grid">
+      <p>These outcomes reinforce one another. Knowledge gives someone a way to explain what they are seeing. Practice develops the ability to act on that explanation. Confidence grows when those abilities hold up outside a rehearsed example. Confidence without understanding is fragile, and understanding without an opportunity to practice can remain theoretical.</p>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="methods-heading">
-    <h2 id="methods-heading">How I Teach</h2>
-    <p class="body-copy">I combine explanation with demonstration and practice. The method depends on the subject, audience, and learning objective rather than following a fixed sequence for its own sake.</p>
-    <div class="education-methods">
-      {teachingMethods.map((method, index) => (
-        <article class="education-method">
-          <span class="method-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+  <section class="section" aria-labelledby="learning-purposes">
+    <h2 id="learning-purposes">Different learning goals require different experiences.</h2>
+    <div class="body-copy narrative-copy">
+      <p>I distinguish <strong>Knowledge Transfer, Skill Development, and Mindset Development</strong> because they are related but not interchangeable. Introducing a concept is not the same as helping someone perform a task, and successful task execution does not necessarily mean they've developed the judgment to recognize when that task is appropriate.</p>
+      <p>Knowledge Transfer provides the conceptual foundation. Skill Development creates opportunities to apply it through hands-on work. Mindset Development is about how someone approaches uncertainty, decides what to investigate, and evaluates their own reasoning. A strong technical course can serve all three purposes, but it should be clear which one a particular experience is intended to support.</p>
+    </div>
+    <div class="narrative-subsections">
+      {developmentPurposes.map((purpose, index) => (
+        <div class="narrative-subsection">
+          <span class="section-number">{String(index+1).padStart(2,'0')}</span>
           <div>
-            <h3>{method.name}</h3>
-            <p>{method.description}</p>
+            <h3>{purpose.name}</h3>
+            <p>{purpose.description}</p>
           </div>
-        </article>
+        </div>
       ))}
     </div>
-    <div class="body-copy">
-      <p>Students learn at different rates. I work to support learners who need additional guidance and provide opportunities for deeper exploration when others are ready to move ahead.</p>
+  </section>
+
+  <section class="section" aria-labelledby="teaching-methods">
+    <h2 id="teaching-methods">How I turn those goals into a learning experience.</h2>
+    <div class="body-copy narrative-copy">
+      <p>I use explanation, demonstration, guided practice, challenges, and assessment as complementary methods. The sequence should serve the concept, not the other way around. Some topics need a careful definition before a demonstration makes sense. Others become clearer when learners can observe the system first and then return to the theory.</p>
+      <p>Hands-on practice matters particularly in network security. A learner may hear an explanation of an HTTP transaction or a detection workflow and think it makes sense. Actually investigating the related records forces the explanation to meet reality. When the data doesn't look like the slide, the learner has an opportunity to ask why.</p>
+      <p>I also pay attention to differences in pace. A learner who is struggling may need a smaller example, more context, or help identifying the step where their mental model stopped matching the system. Someone who finishes quickly should have a meaningful opportunity to explore further rather than simply sit through the remaining time.</p>
+      <details class="narrative-detail">
+        <summary>Explore the instructional methods I use</summary>
+        <div class="narrative-subsections">
+          {teachingMethods.map((method, index) => (
+            <div class="narrative-subsection">
+              <span class="section-number">{String(index+1).padStart(2,'0')}</span>
+              <div><h3>{method.name}</h3><p>{method.description}</p></div>
+            </div>
+          ))}
+        </div>
+      </details>
     </div>
   </section>
 
   <section class="section" aria-labelledby="assessment-heading">
-    <h2 id="assessment-heading">How I Think About Assessment</h2>
-    <p class="body-copy">I separate assessment into two foundational formats. They can be used to evaluate knowledge, practical skills, or the development of a mindset, depending on how the assessment is designed.</p>
+    <h2 id="assessment-heading">Assessment should tell us something useful.</h2>
+    <div class="body-copy narrative-copy">
+      <p>I organize assessments under two foundational forms: <strong>Knowledge Checks</strong> and <strong>Practical Assessments</strong>. A knowledge check might reveal whether a learner can distinguish an observation from an inference. A practical assessment might ask them to inspect data, construct a query, troubleshoot a system, or explain the evidence behind a conclusion.</p>
+      <p>Neither form automatically measures only one learning goal. The questions, tasks, and criteria determine what the learner is being asked to demonstrate. The distinction is useful because it helps me choose an assessment that fits the intended learning rather than relying on a familiar format.</p>
+      <p>Feedback from these activities also informs the materials themselves. If several learners struggle with the same concept, that may be evidence that the explanation, prerequisite sequence, example, or lab needs to change.</p>
+    </div>
     <div class="card-grid">
-      {assessmentRoots.map((root) => (
+      {assessmentRoots.map(root => (
         <article class="card">
           <h3>{root.name}</h3>
           <p>{root.description}</p>
@@ -81,35 +109,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </section>
 
   <section class="section" aria-labelledby="modes-heading">
-    <h2 id="modes-heading">My Two Modes of Operation</h2>
-    <p class="body-copy">My work as a Security Educator includes both facilitating learning and creating the experiences and resources that make it possible. I organize those responsibilities into two complementary modes.</p>
-    <div class="experience-list">
-      <details>
-        <summary><strong>Education</strong> · Prepare, Instruct, Demonstrate, Facilitate, Support, Assess, Reflect</summary>
-        <ol class="body-copy">
-          {education.map(([name, description]) => (
-            <li><strong>{name}:</strong> {description}</li>
-          ))}
-        </ol>
-      </details>
-      <details>
-        <summary><strong>Creation</strong> · Analyze, Architect, Design, Develop, Engineer, Validate, Evolve</summary>
-        <ol class="body-copy">
-          {creation.map(([name, description]) => (
-            <li><strong>{name}:</strong> {description}</li>
-          ))}
-        </ol>
-      </details>
+    <h2 id="modes-heading">Teaching and building are part of the same cycle.</h2>
+    <div class="body-copy narrative-copy">
+      <p>My role as a Security Educator includes two primary modes of operation. I call the learner-facing work <strong>Education</strong> and the resource-building work <strong>Creation</strong>. This distinction helps me describe both what happens in a class and what has to happen for a class to exist.</p>
+      <p>Education includes preparing, instructing, demonstrating, facilitating, supporting, assessing, and reflecting. Creation includes analyzing requirements, architecting learning pathways, designing experiences, developing materials, engineering labs, validating the results, and evolving the system over time.</p>
+      <p>These modes are connected. A question asked during instruction may reveal a better way to explain a concept. A lab that behaves unexpectedly may expose a technical assumption worth correcting. A successful learning exercise may suggest a more challenging experience for the next group. I want both sides of the work to learn from each other.</p>
+      <div class="experience-list">
+        <details class="narrative-detail">
+          <summary>Education: the seven learner-facing functions</summary>
+          <ol>{education.map(([name, description]) => <li><strong>{name}:</strong> {description}</li>)}</ol>
+        </details>
+        <details class="narrative-detail">
+          <summary>Creation: the seven design and development functions</summary>
+          <ol>{creation.map(([name, description]) => <li><strong>{name}:</strong> {description}</li>)}</ol>
+        </details>
+      </div>
+      <p><strong>Education informs Creation. Creation enables Education.</strong> My aim is to keep improving both.</p>
     </div>
-    <p class="body-copy"><strong>Education informs Creation. Creation enables Education.</strong> The two modes reinforce one another through observation, feedback, revision, and practical experience.</p>
   </section>
 
-  <section class="section" aria-labelledby="explore-education-heading">
-    <h2 id="explore-education-heading">Explore Further</h2>
-    <p class="body-copy">This page describes my educational approach. Publicly shareable teaching materials and demonstrations will be linked when they have been deliberately released and are authorized for public distribution.</p>
-    <div class="resource-links">
-      <a class="secondary-link" href={base + '/about/experience/'}>Professional Experience</a>
-      <a class="secondary-link" href={base + '/about/capabilities/'}>Technical Capabilities</a>
+  <section class="section">
+    <div class="narrative-panel">
+      <h2>The outcome I care about</h2>
+      <p>I want learners to leave an experience with more than an answer key. I want them to have a clearer model of the system, enough practice to work with it, and the willingness to keep asking questions when they encounter something unfamiliar.</p>
+      <div class="resource-links">
+        <a class="secondary-link" href={base + '/about/experience/'}>My professional experience</a>
+        <a class="secondary-link" href={base + '/knowledge/'}>Explore the knowledge behind the learning</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

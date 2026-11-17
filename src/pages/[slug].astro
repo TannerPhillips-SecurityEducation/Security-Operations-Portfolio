@@ -3,7 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { navigation } from '../data/site';
 
 export function getStaticPaths() {
-  return navigation.filter((section) => section.path !== '/' && section.path !== '/knowledge/' && section.path !== '/education/' && section.path !== '/projects/' && section.path !== '/publications/' && section.path !== '/contact/').map((section) => ({
+  return navigation.filter(section =>
+    section.path !== '/' && section.path !== '/knowledge/' && section.path !== '/education/' &&
+    section.path !== '/projects/' && section.path !== '/publications/' && section.path !== '/contact/'
+  ).map(section => ({
     params: { slug: section.path.replaceAll('/', '') },
     props: { section },
   }));
@@ -11,33 +14,59 @@ export function getStaticPaths() {
 const { section } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
 const aboutTopics = [
-  { label:'My Journey', path:'/about/journey/', description:'A timeline of selected professional milestones.' },
-  { label:'Professional Experience', path:'/about/experience/', description:'Cyber operations, education, and curriculum creation.' },
-  { label:'Personal Interests', path:'/about/interests/', description:'Making, philosophy, writing, computing, and interactive worlds.' },
-  { label:'Philosophy', path:'/about/philosophy/', description:'My evolving perspective on knowledge, freedom, and responsibility.' },
-  { label:'Technical Capabilities', path:'/about/capabilities/', description:'Five practice-based domains with supporting experience.' },
-  { label:'Professional Credentials', path:'/about/credentials/', description:'Previously held certifications and continuing development.' },
+  { label:'My Journey', path:'/about/journey/', description:'How my path moved from the Navy into threat hunting, technical education, and the creation of learning experiences.' },
+  { label:'Professional Experience', path:'/about/experience/', description:'What I learned from working in cyber operations, teaching at Elastic, and building education at Corelight.' },
+  { label:'Personal Interests', path:'/about/interests/', description:'The inventions, ideas, writing, software experiments, and imagined worlds that keep my curiosity busy.' },
+  { label:'Philosophy', path:'/about/philosophy/', description:'Why I value questions, evidence, reflection, autonomy, and responsibility.' },
+  { label:'Technical Capabilities', path:'/about/capabilities/', description:'How my technical interests and professional practices connect to actual experience.' },
+  { label:'Professional Credentials', path:'/about/credentials/', description:'The certifications I have previously held, placed in the context of ongoing learning.' },
 ];
 ---
-<BaseLayout title={section.label}>
+<BaseLayout title={section.label} description="Meet Tanner S. Phillips: my path through security, education, technology, philosophy, and creative exploration.">
   <header class="page-heading">
-    <h1>{section.label}</h1>
-    {section.label === 'About' && (
-      <div class="body-copy">
-        <p>I'm Tanner. I'm driven by curiosity and a desire to understand how things work. I enjoy questioning assumptions, exploring possibilities, learning new things, and turning ideas into something tangible. My interests span philosophy, technology, engineering, education, and creative experimentation.</p>
-      </div>
-    )}
+    <p class="eyebrow">THE PERSON BEHIND THE WORK</p>
+    <h1>About Me</h1>
+    <p class="lead">I'm Tanner. I enjoy figuring out how things work, especially when the answer is buried beneath layers of complexity.</p>
   </header>
-  <section class="section" aria-label={section.label + ' content'}>
-    {section.label === 'About' && (
-      <div class="card-grid">
-        {aboutTopics.map((topic) => (
-          <a class="card card-link" href={sitePath(topic.path)}>
-            <h2>{topic.label}</h2>
-            <p>{topic.description}</p>
-          </a>
-        ))}
+  <section class="section" aria-labelledby="about-story-heading">
+    <div class="editorial-layout">
+      <div class="editorial-rail">
+        <p class="eyebrow">AN INTRODUCTION</p>
+        <span class="editorial-rule" aria-hidden="true"></span>
       </div>
-    )}
+      <div class="body-copy narrative-copy">
+        <h2 id="about-story-heading">Curiosity first. Everything else follows.</h2>
+        <p>I'm drawn to the moment when a difficult subject starts to become understandable. It might be a network conversation hidden inside a packet capture, a conceptual problem in philosophy, or a small piece of software that behaves differently than I expected. In each case, I want to discover the structure underneath what I can see.</p>
+        <p>That instinct has shaped my professional work. I spent years in U.S. Navy cyber roles, first exploring adversarial behavior through threat emulation and later investigating it through threat hunting. When I moved into security education, I found a different challenge: taking knowledge that had become familiar to me and making it accessible to someone encountering it for the first time.</p>
+        <p>It has shaped my interests outside work, too. I like tinkering with hardware, developing software experiments, writing, examining the foundations of knowledge, and imagining systems and worlds that can generate their own complexity. I don't see those pursuits as unrelated distractions. They're different expressions of the same curiosity.</p>
+        <p>Thinking, learning, exploring, and creating are the ways I make progress. I rarely expect an early answer to be the final one. I'd rather examine an idea, test it against reality, and improve it than preserve a neat explanation that doesn't hold up.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="about-paths">
+    <div class="section-intro">
+      <div>
+        <p class="eyebrow">FOLLOW A THREAD</p>
+        <h2 id="about-paths">Different parts of the same story.</h2>
+      </div>
+      <p>There's more to me than a job title or a list of technologies. These pages go deeper into where I've been, what I care about, and how I work.</p>
+    </div>
+    <div class="card-grid">
+      {aboutTopics.map(topic => (
+        <a class="card card-link" href={sitePath(topic.path)}>
+          <h2>{topic.label}</h2>
+          <p>{topic.description}</p>
+          <span class="card-continue">Explore this part of my story ↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section class="section" aria-labelledby="about-connecting-idea">
+    <div class="narrative-panel">
+      <p class="eyebrow">A THREAD THROUGH IT ALL</p>
+      <h2 id="about-connecting-idea">Understanding has value when it becomes useful.</h2>
+      <p>I enjoy learning for its own sake. I also care about what happens next: whether an explanation helps somebody understand a system, whether a model survives closer examination, and whether a creation gives us a better way to explore a problem. That's the connection between my professional work and my personal interests.</p>
+      <a class="text-link" href={sitePath('/education/')}>Read how that shapes my approach to teaching ↗</a>
+    </div>
   </section>
 </BaseLayout>

@@ -3,28 +3,54 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { milestones } from '../../data/about';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="My Journey">
+<BaseLayout title="My Journey" description="A first-person account of the path from naval cyber operations to threat hunting, technical education, and curriculum creation.">
   <header class="page-heading">
     <p><a href={base + '/about/'}>About</a></p>
     <h1>My Journey</h1>
-    <p class="lead">Selected milestones from my education, military service, and professional career.</p>
+    <p class="lead">My professional path hasn't been a series of isolated job titles. Each stage changed the questions I wanted to ask and the ways I tried to answer them.</p>
   </header>
-  <section class="section" aria-labelledby="timeline-title">
-    <h2 id="timeline-title">Timeline</h2>
-    <p class="body-copy">Each milestone can be expanded for more context.</p>
-    <ol class="timeline">
-      {milestones.map((m) => (
-        <li>
-          <details>
-            <summary><time datetime={m.year}>{m.year}</time> · {m.title}</summary>
-            <div class="body-copy">
+  <section class="section" aria-labelledby="journey-context">
+    <div class="body-copy narrative-copy">
+      <h2 id="journey-context">From understanding activity to helping others understand it.</h2>
+      <p>My path began with the Navy, where I spent years learning about systems under operational conditions. In threat emulation, I developed an adversarial perspective. In threat hunting, I approached the environment from the other side, searching for signs of behavior that might not be obvious at first glance. The shift made a lasting impression on how I separate observations from interpretations.</p>
+      <p>Moving into security education was not a departure from that work so much as a new use for it. I was still trying to make complex systems understandable, but now the person I needed to help was a learner, not just an analyst. The questions became different: which concepts come first, where does confusion usually begin, and how can someone practice enough to become independently capable?</p>
+      <p>Today my work combines education with the creation of learning materials and environments. The selected milestones below show that progression. They are a professional history, not an attempt to compress an entire life into four dates.</p>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="milestones-heading">
+    <div class="section-intro">
+      <div>
+        <p class="eyebrow">SELECTED MILESTONES</p>
+        <h2 id="milestones-heading">The path so far.</h2>
+      </div>
+      <p>Each milestone represents a change in responsibilities or perspective. The story stays visible; additional context can be opened when useful.</p>
+    </div>
+    <ol class="timeline timeline-narrative">
+      {milestones.map(m => (
+        <li class="timeline-entry">
+          <article>
+            <div class="timeline-year"><time datetime={m.year}>{m.year}</time></div>
+            <div class="timeline-story">
+              <h3>{m.title}</h3>
               <p>{m.summary}</p>
-              <p>{m.more}</p>
+              <details class="narrative-detail">
+                <summary>More context and reflection</summary>
+                <div class="body-copy">
+                  <p>{m.more}</p>
+                  <p>{m.reflection}</p>
+                </div>
+              </details>
             </div>
-          </details>
+          </article>
         </li>
       ))}
     </ol>
-    <p><a href={base + '/about/experience/'}>Explore my professional experience</a></p>
+  </section>
+  <section class="section">
+    <div class="narrative-panel">
+      <h2>What connects these chapters?</h2>
+      <p>The common thread is an interest in making systems understandable, first by examining them, then by teaching and engineering ways for other people to examine them. The tools and responsibilities have changed. The curiosity underneath them has been remarkably consistent.</p>
+      <a class="text-link" href={base + '/about/experience/'}>Read more about the work itself ↗</a>
+    </div>
   </section>
 </BaseLayout>

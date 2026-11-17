@@ -3,47 +3,93 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { education, creation, elasticDays } from '../../data/about';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Professional Experience">
+<BaseLayout title="Professional Experience" description="Tanner S. Phillips on cyber threat emulation, threat hunting, teaching security at Elastic, and education and curriculum development at Corelight.">
   <header class="page-heading">
     <p><a href={base + '/about/'}>About</a></p>
     <h1>Professional Experience</h1>
-    <p class="lead">My work has progressed from cyber operations to education and curriculum creation.</p>
+    <p class="lead">My work has moved from examining how systems behave under pressure to helping people understand and work with those systems themselves.</p>
   </header>
-  <section class="section" aria-labelledby="experience-title">
-    <h2 id="experience-title">Where I've Worked</h2>
-    <div class="experience-list">
-      <details>
-        <summary><strong>U.S. Navy</strong> · 2014–2020</summary>
+
+  <section class="section" aria-labelledby="professional-intro">
+    <div class="body-copy narrative-copy">
+      <h2 id="professional-intro">The thread through my work.</h2>
+      <p>I've worked in roles that ask different things of the same underlying knowledge. In cyber operations, technical understanding supports analysis and decisions. In education, that understanding has to be made visible and usable by somebody who hasn't spent years developing the same intuition.</p>
+      <p>I care about both. Technical precision matters because an attractive explanation is useless if it is wrong. Teaching matters because expertise is more valuable when it can help another person become capable. These priorities shaped my transitions from the Navy to Elastic and later to Corelight.</p>
+    </div>
+  </section>
+
+  <section class="section career-chapter" aria-labelledby="navy-heading">
+    <div class="chapter-heading">
+      <p class="eyebrow">2014–2020 / CYBER OPERATIONS</p>
+      <h2 id="navy-heading">U.S. Navy</h2>
+    </div>
+    <div class="body-copy narrative-copy">
+      <p>I joined the Navy after graduating from high school in 2014, then joined the 90th Cyber Protection Team in 2015 as a Cryptologic Technician Networks (CTN), a rating now known as Cyber Warfare Technician (CWT).</p>
+      <p>I began with approximately two years in <strong>Cyber Threat Emulation</strong> before moving into <strong>Cyber Threat Hunting</strong> for the remaining years of my service. Those practices look at security from different directions. Emulation requires understanding the actions an adversary might take and how systems respond. Hunting asks what available observations can reveal about activity that may already have occurred.</p>
+      <p>That difference taught me to pay attention to the distance between an action and the evidence of it. A network record can tell us something meaningful without telling us everything. A plausible hypothesis can guide investigation without becoming a proven conclusion. The discipline is to keep those distinctions intact while continuing to investigate.</p>
+      <p>Specific operations remain private, but the general approach still influences how I think about network security, detection, analysis, and the teaching of those subjects.</p>
+    </div>
+  </section>
+
+  <section class="section career-chapter" aria-labelledby="elastic-heading">
+    <div class="chapter-heading">
+      <p class="eyebrow">2020–2025 / SECURITY EDUCATION</p>
+      <h2 id="elastic-heading">Elastic</h2>
+    </div>
+    <div class="body-copy narrative-copy">
+      <p>When I joined Elastic Security Education in 2020, my primary responsibility became teaching. Curriculum development was a secondary responsibility that I took on as needed. I delivered technical instruction, worked with existing learning materials, and contributed to their development and maintenance.</p>
+      <p>One historical five-day learning experience illustrates the kind of progression I taught. It began close to the wire with packet analysis, moved through Suricata intrusion detection and Zeek log analytics, and then brought that information into Elastic search workflows. The final day connected those ideas through a guided threat hunt, using Suricata and Zeek logs with CTFd and Kibana.</p>
+      <p>The progression mattered to me because the days were not just five disconnected products or tools. Each introduced a different way to observe and reason about network activity. By the guided hunt, a learner could connect the packets, records, detections, and searches into a more complete investigation.</p>
+      <p>I taught and contributed to the curriculum in collaboration with others. I don't claim sole authorship of the course, and I describe it here as part of my historical experience rather than as a statement about today's course offerings.</p>
+      <details class="narrative-detail">
+        <summary>Explore the five-day course progression</summary>
         <div class="body-copy">
-          <p>In 2015, I joined the 90th Cyber Protection Team as a Cryptologic Technician Networks (CTN), a rating now known as Cyber Warfare Technician (CWT).</p>
-          <p>I began in <strong>Cyber Threat Emulation</strong> for about two years before moving into <strong>Cyber Threat Hunting</strong> for the remainder of my Navy service.</p>
-          <p>These experiences exposed me to adversarial and defensive perspectives on cybersecurity. I keep specific operational details private.</p>
-        </div>
-      </details>
-      <details>
-        <summary><strong>Elastic · Security Education</strong> · 2020–2025</summary>
-        <div class="body-copy">
-          <p>At Elastic, I was <strong>primarily an Educator</strong> and <strong>secondarily a Curriculum Developer</strong>. I delivered established training and contributed to curriculum development, maintenance, and hands-on exercise design as needed.</p>
-          <p>One five-day learning experience progressed from analyzing packets to practicing a guided threat hunt:</p>
+          <p>Each day introduced a different analytical view, and the last day asked learners to bring those views together.</p>
           <ol>
-            {elasticDays.map((d) => <li><strong>{d[0]}: {d[1]}</strong> · {d[2]}</li>)}
+            {elasticDays.map(([day, title, tools]) => (
+              <li><strong>{day}: {title}.</strong> {tools}</li>
+            ))}
           </ol>
-          <p>I worked with other instructors and contributed to the curriculum rather than claiming sole authorship.</p>
         </div>
       </details>
-      <details>
-        <summary><strong>Corelight · Security Education</strong> · 2025–Present</summary>
+    </div>
+  </section>
+
+  <section class="section career-chapter" aria-labelledby="corelight-heading">
+    <div class="chapter-heading">
+      <p class="eyebrow">2025–PRESENT / EDUCATION & CREATION</p>
+      <h2 id="corelight-heading">Corelight</h2>
+    </div>
+    <div class="body-copy narrative-copy">
+      <p>At Corelight Security Education, both instruction and curriculum development are primary responsibilities. I think about these through two complementary modes of operation: <strong>Education</strong>, which is concerned with what happens as people learn, and <strong>Creation</strong>, which concerns the resources and environments that make that learning possible.</p>
+      <p>In Education, I prepare, instruct, demonstrate, facilitate, support, assess, and reflect. Those functions are not merely phases of a presentation. They include making a complicated explanation approachable, recognizing when a learner needs a different path through a problem, and learning from the questions or obstacles that emerge during instruction.</p>
+      <p>In Creation, I analyze learning needs, architect curricula, design experiences, develop resources, engineer technical learning environments, validate what has been built, and evolve those materials. A lab or course should not merely run; it should help someone gain <strong>Knowledge & Understanding, Skills & Capabilities, and Confidence</strong>.</p>
+      <p>The two modes reinforce one another. Teaching reveals where an explanation doesn't connect, where a lab behaves unexpectedly, and which ideas students are ready to explore next. Creation is an opportunity to respond thoughtfully to those observations.</p>
+      <details class="narrative-detail">
+        <summary>Education mode: seven functions</summary>
         <div class="body-copy">
-          <p>At Corelight, I operate in two primary functional roles: <strong>Educator</strong> and <strong>Curriculum Developer</strong>. I describe these responsibilities through two modes, <strong>Education</strong> and <strong>Creation</strong>.</p>
-          <h3>Education Mode</h3>
-          <p>I prepare and facilitate technical learning experiences intended to develop Knowledge & Understanding, Skills & Capabilities, and Confidence.</p>
-          <ol>{education.map((item) => <li><strong>{item[0]}:</strong> {item[1]}</li>)}</ol>
-          <h3>Creation Mode</h3>
-          <p>I develop and improve instructional systems and practical resources.</p>
-          <ol>{creation.map((item) => <li><strong>{item[0]}:</strong> {item[1]}</li>)}</ol>
-          <p>Education informs Creation. Creation enables Education.</p>
+          <p>These functions describe the work of delivering and improving learning experiences.</p>
+          <ol>{education.map(([name, description]) => <li><strong>{name}:</strong> {description}</li>)}</ol>
         </div>
       </details>
+      <details class="narrative-detail">
+        <summary>Creation mode: seven functions</summary>
+        <div class="body-copy">
+          <p>These functions describe the process of making and maintaining the educational system itself.</p>
+          <ol>{creation.map(([name, description]) => <li><strong>{name}:</strong> {description}</li>)}</ol>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-direction">
+    <div class="narrative-panel">
+      <h2 id="work-direction">What I carry between these roles</h2>
+      <p>The most durable thing I've taken from these experiences is a way of approaching uncertainty: start with the system, establish what can be observed, examine the evidence, and resist the temptation to claim more than it supports. Whether I'm analyzing security activity, designing a lab, or explaining a technical concept, I want the result to be both useful and defensible.</p>
+      <div class="resource-links">
+        <a class="secondary-link" href={base + '/education/'}>How I approach education</a>
+        <a class="secondary-link" href={base + '/about/capabilities/'}>Explore technical capabilities</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -10,6 +10,8 @@ I don't believe that knowing something means being incapable of questioning it. 
 
 My philosophy isn't intended to be a collection of unquestionable truths. It's a developing understanding of reality, knowledge, freedom, responsibility, and what it means to live thoughtfully.
 
+A recurring theme in my thinking is that I want a distinction between **what exists**, **what I can observe**, **what I can reasonably infer**, and **what I decide to do**. Collapsing those stages can make an explanation feel simpler, but it can also make it less truthful. I would rather keep an uncomfortable uncertainty visible than cover it with a confident story.
+
 ## 01. Curiosity & Inquiry
 
 I believe curiosity is one of our most valuable capabilities.
@@ -23,6 +25,8 @@ Ideas should be open to examination, including my own.
 I enjoy exploring questions that don't have obvious answers, but I also recognize that not every question has an answer we can currently establish.
 
 Sometimes the most meaningful discovery is recognizing what we don't yet understand.
+
+Inquiry also requires knowing when a question needs a different method. Some questions can be answered by measurement or experimentation. Others require a clearer definition, a more careful argument, or a comparison of competing explanations. Curiosity opens the door, but disciplined investigation determines what I can responsibly claim to have learned.
 
 **I would rather continue questioning than become comfortable with an explanation that cannot withstand scrutiny.**
 
@@ -42,6 +46,8 @@ Unknown is not an embarrassment or a failure. It is an honest acknowledgment tha
 
 I value truth over the appearance of certainty.
 
+In security analysis, this distinction is practical. A detection may identify an interesting pattern, but an interesting pattern is not automatically proof of malicious behavior. A record may establish that a system reported an event, yet still leave unanswered questions about the conditions that produced it. I try to carry that same caution into subjects outside cybersecurity.
+
 **Confidence should be earned through evidence, not performed through conviction.**
 
 ## 03. Reasoning & Reflection
@@ -57,6 +63,8 @@ For me, reflection is essential because even a carefully reasoned conclusion can
 I want to be capable of recognizing those limitations.
 
 Changing my mind in response to better evidence is not a defeat. It is evidence that learning has occurred.
+
+Reflection means examining more than the conclusion. It means asking whether I selected the right evidence, used a clear definition, overlooked an alternative interpretation, or relied too heavily on the first explanation that felt convincing. I don't expect to escape every bias through reflection, but I do think I can build better habits for recognizing my limitations.
 
 **Understanding should evolve as the evidence evolves.**
 
@@ -74,6 +82,8 @@ Freedom is not unlimited permission to harm others. It exists alongside responsi
 
 I value independence of thought because understanding that has been freely developed is fundamentally different from an opinion accepted through coercion.
 
+That conviction extends into how I think about education. I can explain, demonstrate, and challenge an idea, but I can't substitute my understanding for another person's. The goal is to equip someone to evaluate the evidence and make sense of the subject independently, not simply persuade them to repeat my conclusions.
+
 ## 05. Ethics & Responsibility
 
 I believe every person has equal inherent worth.
@@ -89,6 +99,8 @@ When harm occurs, I believe our response should consider not only accountability
 I also believe that helping others is meaningful, but service should not require abandoning responsibility for oneself.
 
 Knowledge and capability create opportunities to contribute, but they also create obligations to consider the consequences of our actions.
+
+I don't think fairness can always be reduced to applying identical treatment to different circumstances. Context, proportionality, and the consequences for people matter. And when a rule or institution fails to serve its purpose, I believe it should be open to challenge and improvement rather than protected merely because it already exists.
 
 **What we can do and what we should do are different questions.**
 

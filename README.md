@@ -78,3 +78,18 @@ The site uses the approved **Obsidian Prism** visual system with Space Grotesk (
 The YAML source must be the only canonical data for the interactive identity panel. It uses native HTML `<details>` to progressively disclose YAML snippets; **Copy YAML** and **Raw file** always expose the complete valid document. Motion is off by default and never overrides a reduced-motion preference.
 
 `npm run validate:tsp` validates the identity source. The predev and prebuild steps run it automatically.
+
+## Narrative edition (v0.10)
+
+The original site structure is preserved, but primary copy now reads as connected first-person narrative instead of a collection of category definitions and condensed bullet points.
+
+- Home: expanded canonical `TSP.yaml` introduction and a bridge from data to the person behind the structure.
+- About: contextual introduction, visible professional chapters, evidence-oriented capabilities, richer interests and philosophy, and certification context.
+- Education: longer treatment of learning philosophy, instructional decisions, practice, assessment, and the two operational modes.
+- Knowledge: rationale for the repository, domain explanations, relationship boundaries, and the distinction between approved architecture and completed sources.
+- Projects and Publications: editorial framing without promoting unfinished or unapproved work.
+- Contact: a more personal account of why and how to connect, retaining only the authorized LinkedIn and GitHub profiles.
+
+The detailed schedules and operational function taxonomies remain accessible through expandable disclosure rather than dominating the initial reading experience. The authoritative `Security-Education` repository is untouched; this edit concerns only portfolio prose and presentation.
+
+See [Editorial style](docs/EDITORIAL.md) for future content standards.
