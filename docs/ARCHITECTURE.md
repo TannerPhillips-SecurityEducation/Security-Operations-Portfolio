@@ -124,3 +124,10 @@ The Obsidian Prism visual identity, monogram, responsive layout, and reduced-mot
 - Source status claims match the source: model-assisted technical review is not independent human final acceptance; draft articles remain drafts.
 - The homepage, About, Education, Knowledge index, native document reader, and source-link explorer link into these narratives.
 - No confidential operational details, sensitive personal data, unapproved publication items, or automatic project promotion were introduced.
+
+## Build-time link integrity (v0.11.1)
+
+- `scripts/sync-knowledge.mjs` resolves unambiguous stale Markdown section fragments to their unique current heading IDs in website-generated copies; this is a compatibility layer, not an upstream source mutation.
+- `scripts/audit-site-links.mjs` checks generated internal href/src destinations and HTML heading anchors.
+- GitHub Actions runs the audit after the static build and before publishing, failing deployment on unresolved internal links.
+- Source manuscripts, editorial review statuses, and the original Security-Education repository remain unmodified.

@@ -11,7 +11,8 @@
     "prebuild": "node scripts/validate-tsp.mjs && node scripts/validate-showcase.mjs && node scripts/sync-knowledge.mjs",
     "sync:knowledge": "node scripts/sync-knowledge.mjs",
     "validate:showcase": "node scripts/validate-showcase.mjs",
-    "validate:tsp": "node scripts/validate-tsp.mjs"
+    "validate:tsp": "node scripts/validate-tsp.mjs",
+    "audit:links": "node scripts/audit-site-links.mjs"
   },
   "engines": {
     "node": ">=22.23.4"

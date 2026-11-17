@@ -31,6 +31,8 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build static site
         run: npm run build
+      - name: Audit generated internal links
+        run: npm run audit:links
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v5
         with:

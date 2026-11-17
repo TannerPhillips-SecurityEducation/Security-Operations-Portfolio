@@ -70,12 +70,31 @@ try {
     throw new Error('Source repository has no root README.md or Markdown files.');
   }
   const known = new Set(paths);
+  const sources = new Map(paths.map(file => [file, fs.readFileSync(path.join(checkout, file), 'utf8')]));
+  const headingIDs = new Map(paths.map(file => {
+    const seen = new Map();
+    const ids = [];
+    for (const line of sources.get(file).split(/\r?\n/)) {
+      const heading = line.match(/^#{1,6}\s+(.+?)\s*#*\s*$/);
+      if (!heading) continue;
+      const readable = heading[1].replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/<[^>]+>/g, '').replace(/[\x60*_~]/g, '');
+      const candidate = readable.trim().toLowerCase()
+        .replace(/[^\p{L}\p{N}_\-\s]/gu, '').replace(/\s/g, '-');
+      if (!candidate) continue;
+      const prior = seen.get(candidate) || 0;
+      ids.push(prior ? candidate + '-' + prior : candidate);
+      seen.set(candidate, prior + 1);
+    }
+    return [file, new Set(ids)];
+  }));
+  let correctedFragments = 0;
   const docs = [];
   fs.rmSync(contentDir, { recursive: true, force: true });
   fs.mkdirSync(contentDir, { recursive: true });
 
   for (const file of paths) {
-    const source = fs.readFileSync(path.join(checkout, file), 'utf8');
+    const source = sources.get(file);
     const links = new Set();
     // Change relative Markdown destinations in the *generated copy only*.
     // The upstream authored text, headings, and status labels are preserved.
@@ -86,8 +105,23 @@ try {
         const target = resolveLinkedMarkdown(file, url, known);
         if (!target) return match;
         links.add(target);
-        const anchor = url.includes('#') ? '#' + url.split('#').slice(1).join('#') : '';
-        return match.replace(wrappedUrl, toSiteUrl(target) + anchor);
+        const rawFragment = url.includes('#') ? url.split('#').slice(1).join('#') : '';
+        let fragment = rawFragment;
+        if (rawFragment) {
+          let decoded = rawFragment;
+          try { decoded = decodeURIComponent(rawFragment); } catch { /* keep raw fragment */ }
+          const available = headingIDs.get(target);
+          // Some older source links stop before a heading's parenthetical subtitle.
+          // Correct only when there is exactly one heading with that prefix.
+          if (available && !available.has(decoded)) {
+            const candidates = [...available].filter(id => id.startsWith(decoded + '-'));
+            if (candidates.length === 1) {
+              fragment = candidates[0];
+              correctedFragments++;
+            }
+          }
+        }
+        return match.replace(wrappedUrl, toSiteUrl(target) + (fragment ? '#' + fragment : ''));
       });
     const destination = path.join(contentDir, file);
     fs.mkdirSync(path.dirname(destination), { recursive: true });
@@ -114,6 +148,7 @@ try {
   fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
   console.log('Synced ' + docs.length + ' Markdown documents from ' + REPO + ' @ ' + revision.slice(0, 12));
   console.log('Found ' + docs.reduce((n, doc) => n + doc.links.length, 0) + ' unique per-document Markdown links.');
+  console.log('Adjusted ' + correctedFragments + ' unambiguous legacy section fragments in generated website links; source unchanged.');
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }

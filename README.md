@@ -107,3 +107,9 @@ The **Knowledge / Start Reading** page provides three optional narrative routes 
 These are editorial navigation aids, not assessments, courses, independently peer-reviewed publications, or new source taxonomy entries. Source status appears where available and is never silently upgraded. A missing referenced canonical source fails the website build.
 
 The landing page, reader, Education page, About page, and existing graph explorer now provide contextual paths between these resources.
+
+## Link integrity (v0.11.1)
+
+During every build, the Knowledge synchronizer corrects only unambiguous legacy section-fragment references in generated website links. It does not change or rewrite the authoritative upstream document headings.
+
+After building, GitHub Actions runs `npm run audit:links` to verify internal HTML resources, navigation destinations, and heading-fragment targets. Broken links now fail the deployment rather than being published silently.
