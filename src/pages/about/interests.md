@@ -107,3 +107,5 @@ Although these interests span different disciplines, I approach them in much the
 I want to understand difficult things, explore their possibilities, create something from that understanding, and discover what I can learn along the way.
 
 **Think. Learn. Explore. Create. Repeat.**
+
+I've written about the reasoning that connects these different pursuits in [How I Think](../how-i-think/).

@@ -60,3 +60,15 @@ For each new page or revision ask:
 5. Are categories and technical labels subordinate to the explanation rather than the entire explanation?
 
 This contract is editorial guidance, not a new knowledge ontology or assessment taxonomy.
+
+## Cross-page narrative continuity (v0.11)
+
+A visitor should be able to follow one idea across sections rather than restart at a category grid.
+
+- About → How I Think explains a personal approach to systems, reasoning, evidence, and reflection.
+- How I Think → Knowledge offers canonical references that clarify observation, evidence, and modeling.
+- Knowledge → Start Reading provides optional routes through source documents, without implying a mandatory curriculum.
+- Education → Knowledge distinguishes what a subject means from how it can be taught and practiced.
+- Any links to unfinished or model-reviewed source material must retain the original development status and its stated limitations.
+
+Avoid inventing anecdotes from the author's life or implying a private security event occurred. Clearly label hypothetical technical examples.

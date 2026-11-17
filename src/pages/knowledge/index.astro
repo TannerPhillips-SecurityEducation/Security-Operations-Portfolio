@@ -45,12 +45,22 @@ const overview = docs.find(doc => doc.file === 'README.md');
       <p>At this stage, the interactive link explorer shows actual links between documents. It is not yet a formal semantic knowledge graph with approved relation predicates. I prefer that limitation to be visible rather than suggesting precision that the current data does not support.</p>
     </div>
     <div class="resource-links">
-      <a class="primary-link" href={base + '/knowledge/browse/'}>Browse and search the library</a>
+      <a class="primary-link" href={base + '/knowledge/start-here/'}>Start with a reading path</a>
+      <a class="secondary-link" href={base + '/knowledge/browse/'}>Browse and search the library</a>
       <a class="secondary-link" href={base + '/knowledge/graph/'}>Explore document links</a>
       {overview && <a class="secondary-link" href={urlFor(overview)}>Read the repository overview</a>}
     </div>
   </section>
 
+  <section class="section" aria-labelledby="guided-paths-title">
+    <div class="narrative-panel">
+      <p class="eyebrow">AN INVITATION TO EXPLORE</p>
+      <h2 id="guided-paths-title">Not sure where to begin?</h2>
+      <p>I find it easier to learn a technical subject when I have a question worth following. I've written three short introductions that connect existing references: how observations become evidence for a claim, how we model the behavior of systems, and how abstract logic relates to implemented mechanisms.</p>
+      <p>They aren't courses or a prescribed reading order. They're ways into the library, intended to make the connections between individual subjects more visible while preserving the source documents' editorial status and limitations.</p>
+      <a class="text-link" href={base + '/knowledge/start-here/'}>Choose a reading path ↗</a>
+    </div>
+  </section>
   <section class="section" aria-labelledby="domains-title">
     <div class="section-intro">
       <div><p class="eyebrow">THE KNOWLEDGE MAP</p><h2 id="domains-title">Start anywhere. Follow the connections.</h2></div>

@@ -10,11 +10,12 @@ const docs = catalog.documents;
     <p><a href={base + '/knowledge/'}>Knowledge</a></p>
     <h1>Document Link Explorer</h1>
     <p class="lead">Explore connections that already exist as Markdown hyperlinks in the knowledge repository.</p>
-    <p class="body-copy">This is a <strong>document-link graph</strong>, not a ratified semantic knowledge graph. Lines represent hyperlinks between real source files. Folder placement and hyperlinks do not, by themselves, assert a typed conceptual relationship.</p>
+    <p class="body-copy">I find it useful to see which subjects a document references and which other documents refer back to it. Here, each connection comes from a real Markdown hyperlink in the source repository. This visualization does not assign an unapproved semantic relationship type or claim that a folder expresses conceptual parentage.</p>
+    <p class="body-copy">Select any document to explore its nearby links, then open a source article to read the explanation in context. The graph is a way to discover connections, not a replacement for the evidence and reasoning inside the documents.</p>
   </header>
 
   <section class="section" aria-labelledby="graph-heading">
-    <h2 id="graph-heading">Explore a Document</h2>
+    <h2 id="graph-heading">Follow the links between documents.</h2>
     <div class="knowledge-filters">
       <label for="graph-document">Choose a document</label>
       <select id="graph-document">

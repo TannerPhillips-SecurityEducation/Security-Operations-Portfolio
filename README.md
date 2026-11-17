@@ -93,3 +93,17 @@ The original site structure is preserved, but primary copy now reads as connecte
 The detailed schedules and operational function taxonomies remain accessible through expandable disclosure rather than dominating the initial reading experience. The authoritative `Security-Education` repository is untouched; this edit concerns only portfolio prose and presentation.
 
 See [Editorial style](docs/EDITORIAL.md) for future content standards.
+
+## Connected thinking and guided reading (v0.11)
+
+The portfolio adds a first-person **How I Think** essay connecting systems, observation, derivation, inference, reflection, education, and experimentation. This is personal editorial content, not a new approved knowledge ontology.
+
+The **Knowledge / Start Reading** page provides three optional narrative routes through 12 canonical source documents in Security-Education:
+
+- Observation, Measurement, Evidence, Hypotheses and Experiments
+- Identity and Distinction, Entities and Attributes, Relationships, State/Events/Transitions
+- Sets and Relations, Boolean/Predicate Logic, Digital Logic, Systems and Subsystems
+
+These are editorial navigation aids, not assessments, courses, independently peer-reviewed publications, or new source taxonomy entries. Source status appears where available and is never silently upgraded. A missing referenced canonical source fails the website build.
+
+The landing page, reader, Education page, About page, and existing graph explorer now provide contextual paths between these resources.

@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.10, long-form editorial narrative revision (2026-11-17).
+**Version:** v0.11, connected narratives and guided reading paths (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -114,3 +114,13 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 **Editorial contract:** Keep text concrete, evidence-conscious, first-person, and humane. Do not make unsupported technical/professional claims. Do not present personal experiments as public production releases. Preserve privacy restrictions, reduce uninformative repetition, and prefer visible explanatory prose to collapsed lists. See `docs/EDITORIAL.md`.
 
 The Obsidian Prism visual identity, monogram, responsive layout, and reduced-motion controls are preserved.
+
+
+## Connected thinking and guided reading (v0.11)
+
+- /about/how-i-think/: First-person interpretive essay tying together systems, Locus/Relation/Boundary, Observe/Derive/Infer/Act, Content/Context/Intent, Syntax/Semantics/Pragmatics, and Intuition/Thinking/Reasoning/Reflection. The models remain distinct, and are not asserted to be equivalent or universal ratified laws.
+- /knowledge/start-here/: Three optional narrative routes through 12 real Fundamentals articles, referenced by exact canonical paths from the generated Knowledge catalog. Missing source paths cause the build to fail.
+- These reading paths are a website editorial/navigation layer, NOT a modification to Security-Education and NOT a course or learning assessment.
+- Source status claims match the source: model-assisted technical review is not independent human final acceptance; draft articles remain drafts.
+- The homepage, About, Education, Knowledge index, native document reader, and source-link explorer link into these narratives.
+- No confidential operational details, sensitive personal data, unapproved publication items, or automatic project promotion were introduced.

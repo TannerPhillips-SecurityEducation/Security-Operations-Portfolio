@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import catalog from '../../../data/generated/knowledge-catalog.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const planned = [
+  {
+    id: 'observation-to-evidence',
+    number: '01',
+    title: 'From an observation to a defensible claim',
+    question: 'What can a record actually establish?',
+    introduction: [
+      'Suppose an instrument reports a number, or a computer records that an event occurred. It is tempting to treat that output as a direct description of reality. But the observation came from a particular mechanism, under particular conditions, with a particular scope. What was not captured may matter just as much as what was.',
+      'This path follows the distinctions among observing a phenomenon, measuring a quantity, using information as evidence, and testing an explanation. They are connected ideas, not mandatory stages of a universal pipeline. Reading them together helps reveal the assumptions hidden inside a seemingly straightforward claim.',
+    ],
+    steps: [
+      { file: 'foundations/fundamentals/scientific-analytical-reasoning/observation.md', why: 'Begin with the observer, the observation mechanism, and the limits of what could be acquired or recognized.' },
+      { file: 'foundations/fundamentals/scientific-analytical-reasoning/measurement.md', why: 'Examine what changes when the task is to determine a quantity, including the measurand, procedure, reference, and uncertainty.' },
+      { file: 'foundations/fundamentals/scientific-analytical-reasoning/evidence.md', why: 'Consider how information relates to a particular claim and why a record does not automatically validate every interpretation.' },
+      { file: 'foundations/fundamentals/scientific-analytical-reasoning/hypotheses-and-experiments.md', why: 'Explore how a tentative explanation can be made testable, including controls, alternative explanations, and the limits of an experiment.' },
+    ],
+    closing: 'The useful result is not a formula for certainty. It is a more careful way to say what was observed, what a method established, what a claim still depends on, and what might reduce the uncertainty.',
+  },
+  {
+    id: 'modeling-systems',
+    number: '02',
+    title: 'From distinguishing a thing to modeling its behavior',
+    question: 'How do we represent a system without confusing the model with the system?',
+    introduction: [
+      'A complex environment becomes easier to examine once we decide what counts as an entity, which properties are relevant, and how things are related. Those decisions make a model useful, but they also introduce boundaries. Different models of the same environment can be appropriate for different questions.',
+      'This path begins with the problem of identity and distinction, then looks at entities, relationships, and changes over time. It is relevant to software, networks, physical devices, simulations, and any discipline where we must describe behavior without claiming that our chosen representation captures everything.',
+    ],
+    steps: [
+      { file: 'foundations/fundamentals/models-abstraction/identity-and-distinction.md', why: 'Start with sameness, difference, reference, and the conditions under which we treat something as distinguishable.' },
+      { file: 'foundations/fundamentals/models-abstraction/entities-and-attributes.md', why: 'Examine how a model represents a subject and which of its properties or values matter to the question at hand.' },
+      { file: 'foundations/fundamentals/models-abstraction/relationships.md', why: 'Move beyond isolated entities to associations, direction, cardinality, and context-dependent meaning.' },
+      { file: 'foundations/fundamentals/models-abstraction/state-events-and-transitions.md', why: 'Consider modeled conditions, recognized occurrences, and changes between states, including what a record does not prove.' },
+    ],
+    closing: 'The point is not to memorize four definitions. It is to recognize which decisions are part of the model, which behaviors belong to the system being modeled, and where the gap between the two becomes important.',
+  },
+  {
+    id: 'abstract-to-physical',
+    number: '03',
+    title: 'From logical structure to implemented behavior',
+    question: 'How does an abstract relationship become part of a working system?',
+    introduction: [
+      'I enjoy exploring the distance between a formal idea and its implementation. A relationship can exist as a mathematical definition, a condition in a program, or a behavior realized by electronic components. Those uses are connected, but describing one does not automatically explain the mechanisms of the others.',
+      'This path moves through sets, formal logic, a physical realization of digital logic, and the systems perspective needed to understand how components work together. It is useful when a familiar technology seems to hide the conceptual decisions underneath it.',
+    ],
+    steps: [
+      { file: 'foundations/fundamentals/mathematics-logic/sets-and-relations.md', why: 'Examine membership and formal relationships before assuming that an everyday association is already a precise mathematical relation.' },
+      { file: 'foundations/fundamentals/mathematics-logic/boolean-and-predicate-logic.md', why: 'Explore truth functions, predicates, and the difference between a valid inference and the truth of its premises.' },
+      { file: 'foundations/fundamentals/digital-systems-hardware/digital-logic.md', why: 'Study how logical operations can be realized in electronic systems without treating abstract Boolean logic as identical to hardware.' },
+      { file: 'foundations/fundamentals/systems-engineering/systems-and-subsystems.md', why: 'Return to the larger system: boundaries, interfaces, component responsibilities, and emergent behavior.' },
+    ],
+    closing: 'An implementation is not merely an abstract definition with a different label. The environment, components, interfaces, and constraints all contribute to its behavior. Understanding the connections means preserving those distinctions.',
+  },
+];
+
+const paths = planned.map(path => ({
+  ...path,
+  steps: path.steps.map(step => {
+    const doc = catalog.documents.find(item => item.file === step.file);
+    if (!doc) throw new Error('Guided reading references a missing canonical document: ' + step.file);
+    return { ...step, doc };
+  }),
+}));
+---
+<BaseLayout title="Start Reading" description="Three guided, source-linked reading journeys through observation and evidence, modeling systems, and the relationship between abstract logic and implementation.">
+  <header class="page-heading">
+    <p><a href={base + '/knowledge/'}>Knowledge</a></p>
+    <p class="eyebrow">THREE PLACES TO BEGIN</p>
+    <h1>Start Reading</h1>
+    <p class="lead">A technical library can contain plenty of useful information and still be difficult to enter. These are three ways I would begin exploring the relationships between its subjects.</p>
+  </header>
+
+  <section class="section" aria-labelledby="how-to-read">
+    <div class="editorial-layout">
+      <div class="editorial-rail">
+        <p class="eyebrow">A READER'S GUIDE</p>
+        <span class="editorial-rule" aria-hidden="true"></span>
+      </div>
+      <div class="body-copy narrative-copy">
+        <h2 id="how-to-read">Follow a question rather than a checklist.</h2>
+        <p>I built the Knowledge library around foundational concepts and their specialized applications, but a directory tree is only a map of where information lives. It doesn't always tell a reader why one subject might matter to another.</p>
+        <p>For that reason, I've assembled a few paths through existing references. Each begins with a question, follows several connected subjects, and offers some context about why the next reading may be worthwhile. The paths are suggestions, not prerequisites or prescribed courses. You can begin in the middle, open a related link, or return to the domain hierarchy whenever another question becomes more interesting.</p>
+        <p>These pages are part of an evolving repository. Some have undergone scoped, model-assisted review while others are working drafts. They have not all received independent human acceptance for publication. You'll see the source's own development status on the individual reading pages.</p>
+      </div>
+    </div>
+  </section>
+
+  {paths.map(path => (
+    <section class="section reading-journey" id={path.id} aria-labelledby={path.id + '-heading'}>
+      <div class="reading-journey-heading">
+        <span class="eyebrow">READING PATH {path.number} / 03</span>
+        <h2 id={path.id + '-heading'}>{path.title}</h2>
+        <p class="reading-question">{path.question}</p>
+      </div>
+      <div class="body-copy narrative-copy">
+        {path.introduction.map(paragraph => <p>{paragraph}</p>)}
+      </div>
+      <ol class="reading-steps">
+        {path.steps.map((step, index) => (
+          <li>
+            <article>
+              <div class="reading-step-number">{String(index + 1).padStart(2, '0')}</div>
+              <div>
+                <h3><a href={base + '/knowledge/read/' + step.doc.slug + '/'}>{step.doc.title} ↗</a></h3>
+                <p>{step.why}</p>
+                {step.doc.status
+                  ? <p class="knowledge-status"><strong>Source status:</strong> {step.doc.status}</p>
+                  : <p class="knowledge-status">See the source document for its editorial and review status.</p>}
+              </div>
+            </article>
+          </li>
+        ))}
+      </ol>
+      <div class="body-copy narrative-copy">
+        <p>{path.closing}</p>
+      </div>
+    </section>
+  ))}
+
+  <section class="section" aria-labelledby="more-reading">
+    <div class="narrative-panel">
+      <p class="eyebrow">KEEP EXPLORING</p>
+      <h2 id="more-reading">The path changes as the question changes.</h2>
+      <p>These routes are editorial introductions to existing canonical documents, not a replacement for them. The authoritative material remains in the Security-Education repository, where its references, source status, and working architectural decisions can be inspected.</p>
+      <p>There are many other possible connections to explore. If a subject leads you toward networks, applications, cloud systems, identity, or another specialized domain, the full library provides routes back into those areas.</p>
+      <div class="resource-links">
+        <a class="secondary-link" href={base + '/knowledge/browse/'}>Browse the full library</a>
+        <a class="secondary-link" href={base + '/knowledge/graph/'}>Explore existing document links</a>
+        <a class="secondary-link" href={base + '/about/how-i-think/'}>Read how I approach these questions</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

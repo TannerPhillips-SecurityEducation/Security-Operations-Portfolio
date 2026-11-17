@@ -16,6 +16,7 @@ const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') +
 const aboutTopics = [
   { label:'My Journey', path:'/about/journey/', description:'How my path moved from the Navy into threat hunting, technical education, and the creation of learning experiences.' },
   { label:'Professional Experience', path:'/about/experience/', description:'What I learned from working in cyber operations, teaching at Elastic, and building education at Corelight.' },
+  { label:'How I Think', path:'/about/how-i-think/', description:'The structure beneath my questions: systems, evidence, uncertainty, reasoning, and reflection.' },
   { label:'Personal Interests', path:'/about/interests/', description:'The inventions, ideas, writing, software experiments, and imagined worlds that keep my curiosity busy.' },
   { label:'Philosophy', path:'/about/philosophy/', description:'Why I value questions, evidence, reflection, autonomy, and responsibility.' },
   { label:'Technical Capabilities', path:'/about/capabilities/', description:'How my technical interests and professional practices connect to actual experience.' },
@@ -40,6 +41,7 @@ const aboutTopics = [
         <p>That instinct has shaped my professional work. I spent years in U.S. Navy cyber roles, first exploring adversarial behavior through threat emulation and later investigating it through threat hunting. When I moved into security education, I found a different challenge: taking knowledge that had become familiar to me and making it accessible to someone encountering it for the first time.</p>
         <p>It has shaped my interests outside work, too. I like tinkering with hardware, developing software experiments, writing, examining the foundations of knowledge, and imagining systems and worlds that can generate their own complexity. I don't see those pursuits as unrelated distractions. They're different expressions of the same curiosity.</p>
         <p>Thinking, learning, exploring, and creating are the ways I make progress. I rarely expect an early answer to be the final one. I'd rather examine an idea, test it against reality, and improve it than preserve a neat explanation that doesn't hold up.</p>
+        <p>I've written more about that process in <a href={sitePath('/about/how-i-think/')}>How I Think</a>, where I explore the relationship between observation, inference, reflection, and the systems I try to understand.</p>
       </div>
     </div>
   </section>

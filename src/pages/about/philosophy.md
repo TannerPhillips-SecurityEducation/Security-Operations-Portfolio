@@ -117,3 +117,5 @@ That is a process I want to remain open to throughout my life.
 I want to understand reality as accurately as I can, exercise my freedom responsibly, treat others with dignity, and use what I learn to create something worthwhile.
 
 **I don't need to have every answer. I need to remain willing to learn.**
+
+I explore what this looks like in practice in [How I Think](../how-i-think/), especially the distinction between a useful model, an observation, and an inference.

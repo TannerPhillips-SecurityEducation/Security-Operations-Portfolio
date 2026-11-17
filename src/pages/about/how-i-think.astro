@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const knowledge = (path: string) => base + '/knowledge/read/' + path + '/';
+---
+<BaseLayout title="How I Think" description="How I approach systems, evidence, inference, reflection, and creation. A personal account by Tanner S. Phillips.">
+  <header class="page-heading">
+    <p><a href={base + '/about/'}>About</a></p>
+    <p class="eyebrow">THOUGHT, REASONING & REFLECTION</p>
+    <h1>How I Think</h1>
+    <p class="lead">When something doesn't make sense to me, I usually want to find the structure beneath it. That instinct connects my work in security, my interest in philosophy, and the way I approach learning and creating.</p>
+  </header>
+
+  <article class="essay">
+    <section class="section" aria-labelledby="first-impulse">
+      <div class="editorial-layout">
+        <div class="editorial-rail">
+          <p class="eyebrow">THE STARTING POINT</p>
+          <span class="editorial-rule" aria-hidden="true"></span>
+        </div>
+        <div class="body-copy narrative-copy">
+          <h2 id="first-impulse">I usually begin underneath the question.</h2>
+          <p>When someone describes a complicated problem, there is often an immediate temptation to look for the quickest answer. I understand that impulse, especially when something is broken or a decision needs to be made. But my attention tends to move toward the structure governing the problem. What exactly are we talking about? Which parts are distinguishable? How do they relate? What limits the system, or our view of it?</p>
+          <p>That habit has its advantages and its costs. It can reveal a missing assumption that would otherwise cause confusion much later. It can also lead me into more detail than a situation requires. I'm still learning to balance the desire for complete understanding with the need to make a useful decision using the evidence available.</p>
+          <p>I don't think every complex subject can be reduced to a neat diagram. A diagram, definition, or model is useful precisely because it selects some features and leaves others aside. If I forget what it excludes, the model can become misleading. I want to be explicit about those boundaries rather than pretending the representation is the entire reality.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="things-relations-boundaries">
+      <div class="body-copy narrative-copy">
+        <h2 id="things-relations-boundaries">First identify the things, their relationships, and their boundaries.</h2>
+        <p>One way I explore structure is through three questions: what can be distinguished, what can be associated, and what separates or limits the subject? I use the terms <strong>Locus, Relation, and Boundary</strong> to examine those questions. A locus is about distinction. A relation is about association. A boundary is about delimitation, both separating things and establishing limits.</p>
+        <p>Consider a network connection. It is easy to speak of the connection as though it were a single, self-evident object. But what distinguishes one connection from another? Which packets or observations are associated with it? Where do we choose to draw its beginning and end? Does the observer see everything necessary to make those decisions? The answers depend on the model, the observation mechanism, and the question being asked.</p>
+        <p>Those distinctions matter in many other subjects. In software, a boundary might be the contract between components. In education, a boundary might separate prerequisite knowledge from the new concept being introduced. In philosophy, the question can be more basic: what allows one concept to be differentiated from another?</p>
+        <p>For me, these are useful tools of inquiry, not a claim that every phenomenon must be forced into a universal three-part formula. If the framework stops clarifying the subject, I need to change the framework or recognize its limits.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="reality-evidence">
+      <div class="body-copy narrative-copy">
+        <h2 id="reality-evidence">Reality is not the same thing as the evidence I have about it.</h2>
+        <p>One of the most important distinctions in my thinking is the space between what happened and what an observer can establish. This is a familiar problem in cybersecurity, but it extends well beyond it. An instrument has a limited view. A record preserves some details and loses others. An explanation connects that information to a claim, often through assumptions that deserve to be examined.</p>
+        <p>I find it helpful to describe my work through four operations: <strong>Observe, Derive, Infer, and Act</strong>. Observation concerns what information can be acquired or recognized. Derivation concerns the operations used to select, compare, calculate, or organize that information. Inference goes further, forming a possible explanation or judgment from what is known. Action uses that understanding to decide what to do, while remaining accountable for the consequences.</p>
+        <p>Imagine a hypothetical investigation in which a DNS log shows that a device requested a particular domain. That's an observation of a record reporting a query under the system's logging semantics. I can derive additional information by comparing timestamps, related connections, or other log sources. I might infer that the behavior is consistent with a particular kind of activity, but the query alone does not prove a compromise. Choosing to escalate an investigation, collect more context, or take a protective measure is another kind of decision, with its own evidentiary and operational responsibilities.</p>
+        <p>Separating these stages helps prevent an interesting signal from quietly becoming a definitive story. It also makes disagreement more productive. Two people may agree about what was observed but disagree about the inference. That tells us where to focus further work.</p>
+        <p>The distinction between <a href={knowledge('foundations/fundamentals/scientific-analytical-reasoning/observation')}>Observation</a> and <a href={knowledge('foundations/fundamentals/scientific-analytical-reasoning/evidence')}>Evidence</a> is developed further in my technical Knowledge library. Those references are working material with disclosed review status, rather than claims of final independent acceptance.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="meaning-context">
+      <div class="body-copy narrative-copy">
+        <h2 id="meaning-context">A fact changes meaning when its context changes.</h2>
+        <p>I'm interested in the differences between <strong>Content, Context, and Intent</strong>, as well as between <strong>Syntax, Semantics, and Pragmatics</strong>. They are related ways of examining information and interpretation, but I don't treat them as interchangeable.</p>
+        <p>Content concerns what information is present; context helps explain the conditions and relationships surrounding it; intent concerns a purpose or aim that may need to be inferred rather than directly observed. Syntax is concerned with how expressions are structured, semantics with meaning, and pragmatics with how communication operates in use. Each distinction helps answer a different class of question.</p>
+        <p>A technically valid command, for example, has a syntax that can be inspected. Its semantics concern what it means or does under a particular system. The practical significance of issuing it depends on the environment and the person using it. None of those layers automatically establishes why that person chose to run it.</p>
+        <p>These distinctions are part of why I care so much about precise terminology. Two people can appear to agree because they use the same word, while silently attaching different meanings or assumptions to it. I would rather clarify the term early than build a complicated argument on an unstable definition.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="reflection-thinking">
+      <div class="body-copy narrative-copy">
+        <h2 id="reflection-thinking">Reflection is more than repeating the thought.</h2>
+        <p>I distinguish <strong>Intuition, Thinking, Reasoning, and Reflection</strong> when examining how my own understanding develops. An intuition may draw my attention to a possible pattern. Thinking gives me room to explore the idea. Reasoning is where I examine its consistency, implications, and supporting evidence. Reflection asks whether my approach to the problem was itself sound.</p>
+        <p>Reflection can be uncomfortable because it turns the investigation back toward my own assumptions. Did I decide too early what counted as relevant? Was I asking the wrong question? Did I mistake an elegant explanation for an accurate one? Was a model useful because it clarified the evidence, or merely because it made the material look orderly?</p>
+        <p>There is no guarantee that this process removes every bias or error. I can still misunderstand something. But I want my thinking to remain revisable. I consider a better explanation that forces me to discard an older one a form of progress, not a personal loss.</p>
+        <p>This matters just as much in education as in technical analysis. A learner's question may reveal that my explanation left out something important. Reflecting on that moment should lead to a better example, a clearer definition, or a different way into the concept, rather than a defense of the original slide.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="thinking-making">
+      <div class="body-copy narrative-copy">
+        <h2 id="thinking-making">Sometimes I have to build an idea to understand it.</h2>
+        <p>There's a point where continuing to describe a system becomes less useful than constructing a small version of it. I enjoy that transition. A program, a laboratory experiment, an automation workflow, or a procedural world forces me to make decisions that abstract discussion can leave unresolved.</p>
+        <p>When a model becomes a working system, I can observe what it actually does. The result may support my assumptions or contradict them. In either case, I learn something. I also discover constraints that weren't visible in the first sketch: edge cases, interactions between components, unexpected states, or simply a concept that was less well defined than I thought.</p>
+        <p>I don't need every experiment to become a finished public project. Some are worthwhile because they let me test an idea or discover a better question. When I do present work publicly, I want to make the evidence of the result and the limitations of the implementation inspectable, not hide them behind a polished description.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="thinking-teaching">
+      <div class="body-copy narrative-copy">
+        <h2 id="thinking-teaching">Understanding something changes when I try to teach it.</h2>
+        <p>Technical experience can make certain decisions feel automatic. An experienced analyst may know which field to search, which record deserves attention, or which hypothesis to test next, without consciously reciting the reasoning that led there. A new learner doesn't have that accumulated context.</p>
+        <p>Teaching forces me to examine the hidden steps. Which distinctions need to be introduced first? What evidence would make the concept concrete? Where is the first opportunity to practice rather than just listen? How do I support a learner when the example doesn't behave as expected?</p>
+        <p>My guiding principle is that <strong>to learn, one must be able to ask questions and make mistakes</strong>. The ability matters more than the requirement to do either one. I want people to feel free to explore a problem without having to pretend they already understand it.</p>
+        <p>That is why <a href={base + '/education/'}>Education</a> and <a href={base + '/knowledge/'}>Knowledge</a> are related but separate parts of this website. Knowledge concerns the ideas and mechanisms themselves. Education concerns how people encounter, practice, and develop the ability to use them.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="narrative-panel">
+        <p class="eyebrow">A CONTINUING PRACTICE</p>
+        <h2>What I want from my thinking</h2>
+        <p>I want to understand the world as accurately as I can, recognize where my understanding is incomplete, and remain willing to revise it. Sometimes that means a technical investigation. Sometimes it means a philosophical argument, a page of writing, or an experiment that doesn't work the first time.</p>
+        <p>Whatever the subject, the goal is the same: to make the underlying structure clearer without pretending that clarity is the same thing as certainty.</p>
+        <div class="resource-links">
+          <a class="secondary-link" href={base + '/about/philosophy/'}>My personal philosophy</a>
+          <a class="secondary-link" href={base + '/knowledge/start-here/'}>Explore foundational references</a>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

@@ -489,3 +489,35 @@ main { min-height: 68vh; }
   .capability-story-index { font-size: .85rem; }
   .narrative-detail { padding: .9rem; }
 }
+
+
+/* Narrative essays and guided source reading. The primary text stays visible. */
+.essay > .section { border-top: 1px solid var(--border); }
+.essay > .section:first-child { border-top: 0; }
+.essay .narrative-copy { max-width: 82ch; }
+.essay .narrative-copy p { line-height: 1.95; }
+.essay .narrative-copy a { font-weight: 600; }
+.reading-journey { border-top: 1px solid var(--border); }
+.reading-journey-heading { max-width: 62rem; margin-bottom: 2rem; }
+.reading-journey-heading h2 { font-size: clamp(2.15rem, 4.1vw, 3.4rem); max-width: 22ch; }
+.reading-question { color: var(--violet); font: 500 clamp(1rem, 2vw, 1.3rem)/1.5 var(--display); }
+.reading-steps { display: grid; list-style: none; margin: 2.25rem 0; padding: 0; gap: .85rem; max-width: 65rem; }
+.reading-steps li { min-width: 0; }
+.reading-steps article {
+  display: grid; grid-template-columns: 60px minmax(0,1fr); gap: 1.3rem;
+  padding: clamp(1.15rem, 2.8vw, 1.8rem);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: linear-gradient(145deg,rgba(31,42,59,.83),rgba(17,26,39,.87));
+}
+.reading-step-number { color: var(--violet); font: 600 1rem/1.4 var(--mono); }
+.reading-steps h3 { font-size: clamp(1.2rem,2vw,1.5rem); line-height: 1.4; margin: 0 0 .65rem; }
+.reading-steps h3 a { text-decoration: none; color: #E6F5F6; }
+.reading-steps h3 a:hover { color: var(--accent); }
+.reading-steps p { color: #BACADB; line-height: 1.8; margin-bottom: .7rem; }
+.reading-steps .knowledge-status { font-size: .78rem; color: #A8B4C4; }
+.reading-steps .knowledge-status strong { color: #D3E0F0; }
+@media (max-width: 650px) {
+  .reading-steps article { grid-template-columns: 1fr; gap: .5rem; }
+  .reading-step-number { font-size: .83rem; }
+}
