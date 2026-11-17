@@ -1,40 +1,75 @@
 ---
 import '../styles/global.css';
-import { identity, navigation } from '../data/site';
+import TSPMark from '../components/TSPMark.astro';
+import { identity, navigation, contactChannels } from '../data/site';
 
 interface Props {
   title: string;
+  description?: string;
 }
-const { title } = Astro.props;
+
+const { title, description = "Tanner S. Phillips: Security Educator, Engineer & Researcher. Exploring security, learning, technology, philosophy, and creative systems." } = Astro.props;
 const sitePath = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
-const pageTitle = title + ' | ' + identity.name;
+const pageTitle = title === 'Home' ? 'TSP.yaml | Tanner S. Phillips' : title + ' | ' + identity.name;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const currentPath = Astro.url.pathname;
+const active = (path: string) => path === '/'
+  ? currentPath === sitePath('/')
+  : currentPath.startsWith(sitePath(path));
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0B0F18" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href={sitePath('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{pageTitle}</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-background" aria-hidden="true"></div>
     <div class="shell">
       <header class="site-header">
-        <a class="brand" href={sitePath('/')}>{identity.name}</a>
-        <nav aria-label="Primary navigation">
+        <a class="brand" href={sitePath('/')} aria-label="Tanner S. Phillips home">
+          <TSPMark />
+          <span class="brand-copy">
+            <strong>Tanner S. Phillips</strong>
+            <small>SECURITY EDUCATOR / ENGINEER / RESEARCHER</small>
+          </span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
           <ul>
             {navigation.map((item) => (
-              <li><a href={sitePath(item.path)} aria-current={Astro.url.pathname === sitePath(item.path) ? 'page' : undefined}>{item.label}</a></li>
+              <li><a href={sitePath(item.path)} aria-current={active(item.path) ? 'page' : undefined}>{item.label}</a></li>
             ))}
           </ul>
         </nav>
       </header>
       <main id="main"><slot /></main>
       <footer class="site-footer">
-        <p>© {new Date().getFullYear()} {identity.name}</p>
+        <div class="footer-primary">
+          <a class="footer-mark" href={sitePath('/')} aria-label="Return to homepage"><TSPMark /></a>
+          <div>
+            <p class="footer-heading">Tanner S. Phillips</p>
+            <p class="footer-note">Think. Learn. Explore. Create.</p>
+          </div>
+        </div>
+        <div class="footer-links" aria-label="Public profiles">
+          {contactChannels.map(channel => (
+            <a href={channel.url} rel="noopener noreferrer" target="_blank" aria-label={'Visit ' + channel.label + ' in a new tab'}>{channel.label}</a>
+          ))}
+          <span>© {new Date().getFullYear()}</span>
+        </div>
       </footer>
     </div>
   </body>

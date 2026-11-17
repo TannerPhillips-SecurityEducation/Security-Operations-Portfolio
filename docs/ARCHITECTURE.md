@@ -1,6 +1,6 @@
 # Personal Website Architecture
 
-**Version:** v0.8, Contact channels and approved content (2026-11-17).
+**Version:** v0.9, Obsidian Prism visual identity and TSP.yaml (2026-11-17).
 
 ## Public identity
 - Tanner Phillips
@@ -26,16 +26,19 @@ Home · About · Projects · Knowledge · Publications · Education · Contact
 - No confidential employer training materials, unpublished curriculum, or unapproved public courses are posted.
 
 ## Publication rules
-- About, Knowledge, Education, and Contact have public content. Projects and Publications have intentionally empty, curated catalogues. Home retains category navigation pending the interactive introduction.
+- About, Knowledge, Education, and Contact have public content. Projects and Publications have intentionally empty, curated catalogues. Home includes the approved progressive YAML introduction, optional geometry motion, and category navigation.
 - Geographic information, private relationships, and other people's personal information are excluded.
 - No personal photographs, confidential operational details, proficiency percentages, or unverified project releases.
 - All certifications are described as previously held, not active.
 - The knowledge repository is separate and unchanged.
 
 ## Visual design
-- Current neutral template is temporary.
-- Obsidian Prism palette, TSP monogram, and interactive authentic `TSP.yaml` are approved design directions, **not implemented**.
-- Visual implementation remains deferred until the design is fully defined.
+- Obsidian Prism is implemented across all pages with approved palette: canvas #0B0F18, surface #192131, cyan #69E4DC, violet #B4A0FF, amber #FFBD7A, and text #EDF2F9.
+- Modern Technical × Editorial typography uses Space Grotesk, Inter, and JetBrains Mono with system fallbacks.
+- The TSP monogram has two horizontal bars crossing the letterforms.
+- The homepage exposes the valid, canonical `src/data/TSP.yaml`, progressive native HTML disclosure, full-source copy/download/raw-file actions, and optional motion.
+- The site respects reduced-motion preferences and retains keyboard navigation, focus indicators, responsive layouts, and semantic structure.
+- See `docs/DESIGN.md` for design tokens and interaction contract.
 
 ## Sources
 Website: TannerPhillips-SecurityEducation/Security-Operations-Portfolio
@@ -54,7 +57,7 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - Knowledge Checks and Practical Assessments do not belong in the upstream technical knowledge repository.
 - Documents include working architectural material and unreviewed subjects; no independent acceptance or final publication status is implied.
 - **Semantic graph metadata/predicates remain unapproved in the source repository.** No such categories are invented in the website.
-- Final visual theme, TSP monogram, and interactive `TSP.yaml` homepage are still deliberately deferred.
+- The global design, monogram, and interactive `TSP.yaml` were subsequently implemented in v0.9.
 
 ## Projects & Publications curation (v0.7)
 
@@ -67,7 +70,7 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - `scripts/validate-showcase.mjs`: Refuses malformed, unapproved, evidence-free, or unpublished entries before building.
 - `docs/CURATION.md`: Editorial publication policy and release instructions.
 - No unfinished projects, personal drafts, private artifacts, or automatically imported repositories are presented as releases.
-- No Obsidian Prism or interactive TSP.yaml design changes.
+- This curation milestone did not change visuals; the global design followed in v0.9.
 
 ## Contact (v0.8)
 
@@ -78,3 +81,16 @@ Knowledge: TannerPhillips-SecurityEducation/Security-Education
 - No contact form, email, phone, personal location, private relationships, or unapproved social links.
 - Links open official profiles in new tabs, without sharing any visitor form information.
 - No global redesign, Obsidian Prism changes, or TSP.yaml implementation performed during this milestone.
+
+## TSP.yaml and global design (v0.9)
+
+- `src/data/TSP.yaml`: canonical, human-readable, valid YAML source for approved personal identity, approaches, interests, philosophy, journey, site paths, and authorized profile links.
+- `src/pages/index.astro`: the visual interface imports and parses this source at build time using the YAML parser; generated code snippets preserve exact values and support progressive disclosure via native `details` elements.
+- `src/pages/TSP.yaml.ts`: read-only, statically built, `application/yaml` endpoint serving the same unmodified source.
+- `scripts/validate-tsp.mjs`: build-time YAML validity, schema, URL allowlist, approved label ordering, and privacy checks.
+- `src/components/TSPMark.astro`: consistent custom monogram across header and footer; favicon provided as standalone SVG.
+- `src/styles/global.css`: shared Obsidian Prism color, editorial typography, component and layout system; optimized for reader legibility.
+- SVG conceptual geometry integrates loci, connections, and boundaries without embedding photos.
+- Motion is user-controlled, disabled by default, and disabled when the operating system requests reduced motion. Content and navigation do not depend on animation or JavaScript.
+- The Knowledge, Projects, Publications, Education, About, and Contact sections retain the existing structure and editorial content.
+- No private personal information or unsupported project/publication releases were introduced.

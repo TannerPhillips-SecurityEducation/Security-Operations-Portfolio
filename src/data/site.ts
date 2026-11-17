@@ -1,7 +1,6 @@
-// Approved site identity and navigation only.
-// Section content will be added through the website interview.
+// Approved public identity, external contact links, and primary navigation.
 export const identity = {
-  name: 'Tanner Phillips',
+  name: 'Tanner S. Phillips',
 } as const;
 
 // Owner-approved public profile URLs. Do not add email, phone, forms, or location.

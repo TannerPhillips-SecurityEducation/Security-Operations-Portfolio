@@ -1,0 +1,11 @@
+---
+interface Props { large?: boolean }
+const { large = false } = Astro.props;
+---
+<svg class:list={['tsp-mark', { 'tsp-mark-large': large }]} viewBox="0 0 156 78" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TSP monogram with two horizontal rules">
+  <title>TSP monogram</title>
+  <text x="10" y="58" class="tsp-mark-letters">TSP</text>
+  <path d="M4 24H151 M4 58H151" class="tsp-mark-rules" stroke-width="2" stroke-linecap="square"/>
+  <circle cx="4" cy="24" r="2.5" class="tsp-mark-dot"/>
+  <circle cx="151" cy="58" r="2.5" class="tsp-mark-dot"/>
+</svg>

@@ -12,7 +12,7 @@ An Astro website with seven navigation categories: Home, About, Projects, Knowle
 
 The editable reference data for milestone dates, operational functions, and capability domains lives in [src/data/about.ts](src/data/about.ts).
 
-The Education page presents the approved teaching philosophy, learning outcomes, instructional methods, and two modes of operation. Other categories retain their structural placeholders. The final Obsidian Prism identity and interactive `TSP.yaml` have not been implemented.
+The Education page presents the approved teaching philosophy, learning outcomes, instructional methods, and two modes of operation. Other sections are presented through the Obsidian Prism design. The interactive `TSP.yaml` homepage is implemented using a real YAML source file.
 
 ## Education
 - [Education page](src/pages/education/index.astro)
@@ -62,3 +62,19 @@ To validate editorial entries run `npm run validate:showcase`. Published Markdow
 ## Contact
 
 The [Contact page](src/pages/contact/index.astro) links only to the user-approved [LinkedIn profile](https://www.linkedin.com/in/securityeducator/) and [GitHub profile](https://github.com/TannerPhillips-SecurityEducation). Both public URLs are stored centrally in [src/data/site.ts](src/data/site.ts). No email address, phone number, contact form, or location is published.
+
+## Visual Identity & TSP.yaml (v0.9)
+
+The site uses the approved **Obsidian Prism** visual system with Space Grotesk (display), Inter (body), and JetBrains Mono (technical text), plus a custom two-line **TSP** monogram and geometric exploration artwork.
+
+- [Homepage](src/pages/index.astro): first-person hero, progressive YAML identity explorer, optional geometric motion, and conventional section navigation
+- [TSP.yaml source](src/data/TSP.yaml): single canonical, valid, copyable, machine-readable public introduction
+- [Raw YAML endpoint](src/pages/TSP.yaml.ts): serves the unmodified YAML as `/TSP.yaml`
+- [TSP Mark](src/components/TSPMark.astro): branded SVG monogram used in the site header and footer
+- [Global Styles](src/styles/global.css): responsive dark-first palette and shared article/knowledge/education styling
+- [YAML Validator](scripts/validate-tsp.mjs): validates the YAML schema, contact channels, and privacy constraints before builds
+- [Design System Documentation](docs/DESIGN.md): tokens, typography, interaction, accessibility
+
+The YAML source must be the only canonical data for the interactive identity panel. It uses native HTML `<details>` to progressively disclose YAML snippets; **Copy YAML** and **Raw file** always expose the complete valid document. Motion is off by default and never overrides a reduced-motion preference.
+
+`npm run validate:tsp` validates the identity source. The predev and prebuild steps run it automatically.

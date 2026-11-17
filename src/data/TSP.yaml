@@ -1,0 +1,47 @@
+# Tanner S. Phillips | public personal identity
+# Canonical source for the interactive homepage introduction.
+identity:
+  name: Tanner S. Phillips
+  monogram: TSP
+  headline: Security Educator, Engineer & Researcher
+  introduction: >-
+    I'm Tanner. I'm driven by curiosity and a desire to understand how things work.
+    I enjoy questioning assumptions, exploring possibilities, learning new things,
+    and turning ideas into something tangible. My interests span philosophy,
+    technology, engineering, education, and creative experimentation.
+approach:
+  - Thinker
+  - Learner
+  - Explorer
+  - Creator
+interests:
+  - Making, Tinkering & Inventing
+  - Philosophy, Logic & Mathematics
+  - Writing, Learning & Knowledge Creation
+  - Computing, AI & Experimentation
+  - Gaming, Game Development & Worldbuilding
+philosophy:
+  - Curiosity & Inquiry
+  - Truth & Evidence
+  - Reasoning & Reflection
+  - Freedom & Autonomy
+  - Ethics & Responsibility
+journey:
+  - year: "2014"
+    milestone: Graduated from high school and joined the U.S. Navy
+  - year: "2015"
+    milestone: Joined the 90th Cyber Protection Team as a CTN
+  - year: "2020"
+    milestone: Joined Elastic Security Education
+  - year: "2025"
+    milestone: Joined Corelight Security Education
+explore:
+  about: about/
+  projects: projects/
+  knowledge: knowledge/
+  publications: publications/
+  education: education/
+  contact: contact/
+connect:
+  linkedin: https://www.linkedin.com/in/securityeducator/
+  github: https://github.com/TannerPhillips-SecurityEducation
